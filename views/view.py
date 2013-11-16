@@ -1,5 +1,6 @@
+from event.listener import EventListener
 
-class View (object):
+class View (EventListener):
 
     def __init__(self):
         self.children = []

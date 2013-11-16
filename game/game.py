@@ -3,6 +3,7 @@ import sys
 import pygame
 
 from views.card import Card
+from event.manager import EventManager
 
 
 # Initialization
@@ -17,6 +18,7 @@ def run():
     black = 0, 0, 0
 
     g.screen = pygame.display.set_mode(size)
+    g.event_manager = EventManager()
 
 
     card = Card()
