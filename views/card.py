@@ -4,7 +4,7 @@
 from sprite import *
 from animation import *
 
-class Card (Sprite):
+class Card (SpriteView):
 
     def __init__(self):
         super(Card, self).__init__("data/img/card_back.jpg")

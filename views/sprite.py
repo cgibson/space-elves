@@ -2,9 +2,10 @@
 """
 import pygame
 import global_mod as g
+from view import View
 
 
-class Sprite (object):
+class SpriteView (View):
 
     def __init__(self, image):
         self.image = pygame.image.load(image)

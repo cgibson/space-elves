@@ -2,7 +2,7 @@ import sys
 
 import pygame
 
-from board.card import Card
+from views.card import Card
 
 
 # Initialization
