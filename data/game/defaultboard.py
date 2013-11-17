@@ -10,6 +10,8 @@ from controllers.deck import DeckController
 from controllers.hand import HandController
 from controllers.card import CardController
 from controllers.ship import ShipController
+from controllers.hud import HUDController
+from controllers.button import ButtonController
 
 from models.board import BoardModel
 from models.player import PlayerModel
@@ -28,6 +30,14 @@ class DefaultBoardSceneGraph (SceneGraph):
     def __init__(self):
         #self.size = # The canvas size can be calculated from the board sprites perhaps
         
+        # Dimensions taken from https://www.dropbox.com/s/kd4u1ee5orponpn/ui-mockup3.jpg
+        handMargin = Dimensions(450,0)
+        screenSize = Dimensions(1280,720)
+        handSize = Dimensions(screenSize.x-handMargin.x*2, 270)
+        laneSize = Dimensions(170, 420)
+        shipSize = Dimensions(1280,150)
+        buttonSize = Dimensions(170,50)
+        
         # load images
         g.image_manager.card_back    = "data/img/card_back.jpg"
         g.image_manager.card_front   = "data/img/card_front.jpg"
@@ -42,6 +52,9 @@ class DefaultBoardSceneGraph (SceneGraph):
         gameController.board.lanes.append(LaneController(7))
         gameController.board.lanes.append(LaneController(7))
         gameController.board.lanes.append(LaneController(7))
+        gameController.hud = HUDController()
+        gameController.hud.endTurnButton = ButtonController(Dimensions(screenSize.x - buttonSize.x, screenSize.y/2), buttonSize)
+            
         player1 = PlayerController()
         player2 = PlayerController()
         gameController.players.append(player1)
@@ -70,13 +83,6 @@ class DefaultBoardSceneGraph (SceneGraph):
             #    player.deck.view.addChild(card.view)
             for card in player.hand.cards:
                 player.hand.view.addChild(card.view)
-        
-        # Dimensions taken from https://www.dropbox.com/s/kd4u1ee5orponpn/ui-mockup3.jpg
-        handMargin = Dimensions(450,0)
-        screenSize = Dimensions(1280,720)
-        handSize = Dimensions(screenSize.x-handMargin.x*2, 270)
-        laneSize = Dimensions(170, 420)
-        shipSize = Dimensions(1280,150)
         
         # Set the positions & sizes.
         gameController.view.size = screenSize

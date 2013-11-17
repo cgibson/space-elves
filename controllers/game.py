@@ -12,6 +12,7 @@ class GameController (Controller):
         super(GameController, self).__init__()
         self.view = GameView()
         self.model = GameModel()
+        self.hud   = None
         self.board = None
         self.players = []
         self.currentPlayer = 0 # Who do we see in the views?
