@@ -5,10 +5,12 @@ from controllers.controller import Controller
 import events
 
 class HandController (Controller):
-    def __init__(self):
+    def __init__(self, visible):
         super(HandController, self).__init__()
         self.view = HandView()
         self.model = HandModel()
+        self.model.visible = visible
+        self.view.visible = visible
         self.cards = []
 
     def notify(self, event):
@@ -21,6 +23,14 @@ class HandController (Controller):
                 if card.view.inBounds(event.mousePos):
                     card.grab()
                     break
+
+    def setVisibility(self, visible):
+        if self.model.visible == visible:
+            return
+
+        self.model.visible = visible
+        self.view.visible = visible
+        self.update()
 
     def removeCard(self, card):
 

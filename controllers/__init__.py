@@ -10,3 +10,4 @@ from input import *
 from lane import *
 from player import *
 from resource import *
+from button import *

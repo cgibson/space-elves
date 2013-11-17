@@ -14,6 +14,8 @@ class GameController (Controller):
         self.model = GameModel()
         self.board = None
         self.players = []
+        self.currentPlayer = 0 # Who do we see in the views?
+        self.playersTurn = 0   # Who's turn is it?
         
     #def win(player?):
     #    pass
