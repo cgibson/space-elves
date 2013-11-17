@@ -33,7 +33,7 @@ class GameController (Controller):
                 print "Confirmed a card is grabbed"
                 for lane in self.board.lanes:
                     if lane.view.inBounds(event.mousePos):
-                        lane.placeCard(grabbedCard)
+                        lane.placeCard(grabbedCard, 0)
                         self.players[0].hand.removeCard(grabbedCard)
                         break
             else:

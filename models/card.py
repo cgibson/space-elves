@@ -8,4 +8,5 @@ class CardModel (Model):
         self.currentPower = 0
         self.attackBonus = 0
         self.movement = 0
+        self.currentMovement = 0
         self.priority = 0 # high is better
