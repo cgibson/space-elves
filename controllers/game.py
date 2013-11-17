@@ -9,7 +9,7 @@ class GameController (Controller):
     def __init__(self):
         self.view = GameView()
         self.model = GameModel()
-        self.board = BoardController()
+        self.board = None
         self.players = []
         
     #def win(player?):

@@ -36,7 +36,7 @@ class DefaultBoardSceneGraph (BoardModel):
         g.image_manager.ship_bottom  = "data/img/board_bottom.png"
         g.image_manager.board_back   = "data/img/board_background.png"
         
-        # init controllers
+        # init controllers which init views/models
         gameController = GameController()
         gameController.board = BoardController()
         gameController.board.lanes.append(LaneController(5))
@@ -55,6 +55,20 @@ class DefaultBoardSceneGraph (BoardModel):
             for cardNumber in range(0,7):
                 player.hand.cards.append(CardController())
         
+        # assemble the views in a sensible heirarchy for this board
+        gameController.view.children.append(gameController.board.view)
+        for player in gameController.players:
+            gameController.view.children.append(player.view)
+            player.view.children.append(player.ship.view)
+            #player.view.children.append(player.deck.view)
+            #player.view.children.append(player.hand.view)
+            #for card in player.deck.cards:
+            #    player.deck.view.append(card.view)
+            #for card in player.hand.cards:
+            #    player.hand.view.append(card.view)
+        #for lane in gameController.board.lanes:
+        #    lane.view.append()
+            
         self.root = gameController.view
     
     def initControllers(self):
