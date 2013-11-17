@@ -1,6 +1,6 @@
 from controllers.controller import Controller
 from views.card import CardView
-from events.event import MouseButtonPressedEvent
+from events.event import CardClicked
 from util.math import *
 
 class CardController (Controller):
@@ -15,4 +15,4 @@ class CardController (Controller):
 
         if isinstance(event, MouseButtonPressedEvent):
             if self.view.inBounds(event.mousePos):
-                self.view.visible = not self.view.visible
+                self.view.played = not self.view.played
