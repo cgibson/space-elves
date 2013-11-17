@@ -38,9 +38,7 @@ class TestSceneGraph (SceneGraph):
         # Code for the cards
         for i in range(3):
             card = CardController(playerId=0)
-            hand.cards.append(card)
-
-            hand.view.addChild(card.view)
+            hand.addCard(card)
 
         # Code for the lane controller
         lane = LaneController(4)

@@ -28,16 +28,15 @@ class CardView (SpriteView):
 
         rect = self.getAbsoluteRect()
 
+        if self.grabbed:
+            newPos = Position(*pygame.mouse.get_pos())
+            rect = rect.move(newPos.x - self.grabbedPos.x,
+                             newPos.y - self.grabbedPos.y)
+
         if self.inSlot:
             g.screen.blit(g.image_manager.card_slot, rect)
         elif self.visible:
             g.screen.blit(g.image_manager.card_front, rect)
-        elif self.grabbed:
-            newPos = Position(*pygame.mouse.get_pos())
-            r = rect
-            r = r.move(newPos.x - self.grabbedPos.x,
-                       newPos.y - self.grabbedPos.y)
-            g.screen.blit(g.image_manager.card_front, r)
         else:
             g.screen.blit(g.image_manager.card_back, rect)
 
