@@ -49,14 +49,14 @@ class DefaultBoardSceneGraph (SceneGraph):
         player2 = PlayerController()
         gameController.players.append(player1)
         gameController.players.append(player2)
-        for player in gameController.players:
+        for playerNum,player in enumerate(gameController.players):
             player.deck = DeckController()
-            player.hand = HandController()
+            player.hand = HandController(True if playerNum is 0 else False)
             player.ship = ShipController()
             for cardNumber in range(0,30):
-                player.deck.cards.append(CardController())
+                player.deck.cards.append(CardController(playerNum))
             for cardNumber in range(0,7):
-                player.hand.cards.append(CardController())
+                player.hand.cards.append(CardController(playerNum))
         
         # Assemble the views in a sensible parent/child heirarchy for this board.        
         for lane in gameController.board.lanes:

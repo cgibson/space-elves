@@ -11,6 +11,7 @@ class HandController (Controller):
         self.model = HandModel()
         self.model.visible = visible
         self.view.visible = visible
+        self.cards = []
 
     def notify(self, event):
         if (isinstance(event, events.MouseDown)):
