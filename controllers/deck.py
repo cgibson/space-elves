@@ -8,3 +8,9 @@ class DeckController (Controller):
         self.model = DeckModel()
         self.view  = DeckView()
         self.cards = [] # CardControllers
+
+
+    def addCard(self, card):
+        self.cards.append(card)
+        self.view.addChild(card.view)
+        self.update()

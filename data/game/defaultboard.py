@@ -63,10 +63,10 @@ class DefaultBoardSceneGraph (SceneGraph):
             player.deck = DeckController()
             player.hand = HandController(True if playerNum is 0 else False)
             player.ship = ShipController()
-            for cardNumber in range(0,30):
-                player.deck.cards.append(CardController(playerNum))
+            #for cardNumber in range(0,30):
+            #    player.deck.addCard(CardController(playerNum))
             for cardNumber in range(0,7):
-                player.hand.cards.append(CardController(playerNum))
+                player.hand.addCard(CardController(playerNum))
         
         # Assemble the views in a sensible parent/child heirarchy for this board.        
         for lane in gameController.board.lanes:
@@ -81,8 +81,8 @@ class DefaultBoardSceneGraph (SceneGraph):
             player.view.addChild(player.hand.view)
             #for card in player.deck.cards:
             #    player.deck.view.addChild(card.view)
-            for card in player.hand.cards:
-                player.hand.view.addChild(card.view)
+            #for card in player.hand.cards:
+            #    player.hand.view.addChild(card.view)
         
         # Set the positions & sizes.
         gameController.view.size = screenSize
