@@ -19,6 +19,11 @@ class ButtonController (Controller):
 
         self.update()
 
+    def setEventType(self, eventType):
+        self.eventType = eventType
+
+    def setFontType(self, font):
+        self.view.fontType = font
 
     def notify(self, event):
 

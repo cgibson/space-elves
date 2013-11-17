@@ -12,6 +12,7 @@ from controllers.card import CardController
 from controllers.ship import ShipController
 from controllers.hud import HUDController
 from controllers.button import ButtonController
+import events
 
 from models.board import BoardModel
 from models.player import PlayerModel
@@ -54,7 +55,9 @@ class DefaultBoardSceneGraph (SceneGraph):
         gameController.board.lanes.append(LaneController(7))
         gameController.hud = HUDController()
         gameController.hud.endTurnButton = ButtonController(Dimensions(screenSize.x - buttonSize.x, screenSize.y/2), buttonSize)
-            
+        gameController.hud.endTurnButton.setText("End Turn")
+        gameController.hud.endTurnButton.setEventType(events.ButtonEndTurn)
+
         player1 = PlayerController()
         player2 = PlayerController()
         gameController.players.append(player1)
