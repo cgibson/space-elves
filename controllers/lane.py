@@ -36,8 +36,7 @@ class LaneController (Controller):
                 print "enemy conflict occured, attack!"
                 card = card.attack(self.cardSlots[slotNum])
 
-        self.cardSlots[slotNum].card = card
-        self.cardSlots[slotNum].view.card = card
+        self.cardSlots[slotNum].addCard(card)
 
     def removeCard(self, slotNum):
         returnCard = self.cardSlots[slotNum]

@@ -14,6 +14,8 @@ class CardSlotController (Controller):
         # TODO: Check to see if there are other cards in the slot already
 
         self.card = card
+        self.card.release()
+        self.card.setPlayed(True)
         self.view.setChildren([card.view])
         
     def isOccupied(self):
