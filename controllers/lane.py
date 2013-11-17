@@ -20,3 +20,16 @@ class LaneController (Controller):
     def placeCard(self, card):
         self.cardSlots[0].card = card
         self.cardSlots[0].view.card = card
+
+    def notify(self, event):
+        super(Controller, self).notify(event)
+
+        if isinstance(event, events.StartTurn):
+            print "Start Turn Received"
+            for x in range(len(self.cardSlots), 0, -1):
+                if x != 0:
+                    self.cardSlots[x] = self.cardSlots[x-1]
+                else:
+                    self.cardSlots[x] = None
+        #TODO Check Which Player It Is
+        #TODO Advance all cards belonging to the player up or down depending on the player

@@ -4,6 +4,7 @@ from controllers.player import PlayerController
 from views.game import GameView
 from models.game import GameModel
 import events
+import global_mod as g
 
 class GameController (Controller):
 
@@ -37,3 +38,9 @@ class GameController (Controller):
                         break
             else:
                 print "No card grabbed"
+
+        if isinstance(event, events.MouseDown):
+            print "mousedown"
+            if event.mouseButton == 2:
+                print "right click"
+                g.event_manager.post(events.StartTurn)
