@@ -3,6 +3,7 @@ from views.lane import LaneView
 from controllers.cardslot import *
 from controllers.controller import Controller
 import events
+import Queue
 
 class LaneController (Controller):
     
@@ -26,6 +27,8 @@ class LaneController (Controller):
             int
         test = self.cardSlots[slotNum].isOccupied();
         if self.cardSlots[slotNum].isOccupied():
+            print card.model
+            print self.cardSlots[slotNum].card
             if card.model.ownerId == self.cardSlots[slotNum].card.model.ownerId:
                 print "allied conflict occured, bounce!"
                 return self.placeCard(card, slotNum + 1)
@@ -36,9 +39,24 @@ class LaneController (Controller):
         self.cardSlots[slotNum].card = card
         self.cardSlots[slotNum].view.card = card
 
-
+    def removeCard(self, slotNum):
+        returnCard = self.cardSlots[slotNum]
+        self.cardSlots[slotNum].card = None
+        self.cardSlots[slotNum].view.card = None
+        return returnCard
 
     def startTurn(self, player):
+        #create collection of cards in the current lane
+        processQueue = Queue.PriorityQueue()
+        for x in range(0, len(self.cardSlots), 1):
+            if self.cardSlots[x].isOccupied():
+                processQueue.put((self.cardSlots[x].card.model.priority, self.cardSlots[x].card, x)) #stores the priority, the card controller, and the index to the slot of the lane
+
+        print processQueue
+        while not processQueue.empty():
+            i = processQueue.get()
+            self.removeCard(i[2])
+            self.placeCard(i[1], i[2]+1)
         for x in range(len(self.cardSlots)-1, 0, -1):
             if x != 0:
                 self.cardSlots[x].card = self.cardSlots[x-1].card
