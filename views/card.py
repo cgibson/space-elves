@@ -33,3 +33,6 @@ class CardView (SpriteView):
             g.screen.blit(image_loader.card_back, (100,100,50,50))
 
         #super(Card, self).draw()
+
+    def notify(self, event):
+        print "Card received event: %s" % event

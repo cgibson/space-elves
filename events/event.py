@@ -1,6 +1,10 @@
 """ Base Event Class, including the EventManager
 """
 
+import pygame
+from util.math import *
+
+
 class Event (object):
     """ Superclass for all events in the game
     """
@@ -12,14 +16,22 @@ class Event (object):
         return self.name
 
 
-class MouseButtonPressedEvent (Event):
+class MouseEvent (Event):
+
+    def __init__(self):
+        super(MouseEvent, self).__init__("Mouse Event")
+        self.mousePos = Position(*pygame.mouse.get_pos())
+
+
+class MouseButtonPressedEvent (MouseEvent):
 
     def __init__(self, mouseButton):
-        super(MouseButtonPressedEvent, self).__init__("Mouse Button %s Pressed" % mouseButton)
+        super(MouseButtonPressedEvent, self).__init__()
         self.mouseButton = mouseButton
 
-class MouseButtonReleasedEvent (Event):
+
+class MouseButtonReleasedEvent (MouseEvent):
 
     def __init__(self, mouseButton):
-        super(MouseButtonReleasedEvent, self).__init__("Mouse Button %s Released" % mouseButton)
+        super(MouseButtonReleasedEvent, self).__init__()
         self.mouseButton = mouseButton
