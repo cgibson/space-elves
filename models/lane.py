@@ -1,4 +1,7 @@
+from model import *
 
-class LaneModel:
-    def __init__():
+class LaneModel (Model):
+
+    def __init__(self):
+        super(LaneModel, self).__init__()
         pass
