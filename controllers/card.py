@@ -1,6 +1,6 @@
 from controllers.controller import Controller
 from views.card import CardView
-from events.event import CardClicked
+from events.event import MouseButtonPressedEvent
 from util.math import *
 
 class CardController (Controller):
