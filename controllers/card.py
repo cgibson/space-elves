@@ -14,4 +14,4 @@ class CardController (Controller):
         super(Controller, self).notify(event)
 
         if isinstance(event, CardClicked):
-            print "I HAVE RECEIVED CARD CLICKED!"
+            self.view.visible = not self.view.visible

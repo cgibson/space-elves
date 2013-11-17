@@ -30,6 +30,6 @@ class CardView (SpriteView):
         #super(Card, self).draw()
 
     def notify(self, event):
-        if(isinstance(event, MouseEvent)):
+        if(isinstance(event, MouseButtonPressedEvent)):
             if self.inBounds(event.mousePos):
                 g.event_manager.post(CardClicked(self))
