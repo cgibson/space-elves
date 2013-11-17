@@ -17,9 +17,9 @@ class LaneController (Controller):
             self.cardSlots.append(slot)
             self.view.addChild(slot.view)
 
-    def placeCard(self, card):
-        self.cardSlots[0].card = card
-        self.cardSlots[0].view.card = card
+    def placeCard(self, card, slotNum):
+        self.cardSlots[slotNum].card = card
+        self.cardSlots[slotNum].view.card = card
 
     def startTurn(self, player):
         for x in range(len(self.cardSlots)-1, 0, -1):

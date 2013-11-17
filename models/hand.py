@@ -4,3 +4,4 @@ class HandModel (Model):
     def __init__(self):
         super(HandModel, self).__init__()
         self.cards = []
+        self.visible = False

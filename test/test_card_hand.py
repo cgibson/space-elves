@@ -1,6 +1,7 @@
 from app import *
 
 from controllers import *
+from views import *
 import global_mod as g
 
 class TestSceneGraph (SceneGraph):
@@ -28,18 +29,16 @@ class TestSceneGraph (SceneGraph):
         c.view.addChild(pc.view)
 
         # Code for the hand controller
-        hand = HandController()
-        hand.view.position = Position(0,0)
+        hand = HandController(visible=True)
+        hand.view.position = Position(100,0)
         hand.view.size = Dimensions(800, 270)
         pc.hand = hand
         pc.view.addChild(hand.view)
 
         # Code for the cards
         for i in range(3):
-            card = CardController()
-            hand.cards.append(card)
-
-            hand.view.addChild(card.view)
+            card = CardController(playerId=0)
+            hand.addCard(card)
 
         # Code for the lane controller
         lane = LaneController(4)
@@ -50,6 +49,13 @@ class TestSceneGraph (SceneGraph):
 
         bc.lanes.append(lane)
         bc.view.addChild(lane.view)
+
+        button = ButtonController(Position(200,200),
+                                  Dimensions(100,50),
+                                  "Test")
+
+        bc.view.addChild(button.view)
+
 
 
         #cardSlotController = CardSlotController()

@@ -14,6 +14,8 @@ class GameController (Controller):
         self.model = GameModel()
         self.board = None
         self.players = []
+        self.currentPlayer = 0 # Who do we see in the views?
+        self.playersTurn = 0   # Who's turn is it?
         
     #def win(player?):
     #    pass
@@ -24,7 +26,7 @@ class GameController (Controller):
         if isinstance(event, events.MouseReleased):
             print "Got mouse released event"
             grabbedCard = None
-            for card in self.players[0].hand.cards:
+            for card in self.players[0].hand.model.cards:
                 if card.view.grabbed:
                     grabbedCard = card
                     break
@@ -33,7 +35,7 @@ class GameController (Controller):
                 print "Confirmed a card is grabbed"
                 for lane in self.board.lanes:
                     if lane.view.inBounds(event.mousePos):
-                        lane.placeCard(grabbedCard)
+                        lane.placeCard(grabbedCard, 0)
                         self.players[0].hand.removeCard(grabbedCard)
                         break
             else:

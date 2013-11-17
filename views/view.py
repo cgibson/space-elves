@@ -20,6 +20,9 @@ class View (object):
         self.rect = rect
         self.cursorInteract = True
 
+    def setParent(self, parent):
+        self.parent = parent
+
     def getAbsolutePosition(self):
 
         if self.parent:
@@ -27,9 +30,18 @@ class View (object):
 
         return self.position
 
+    def getAbsoluteRect(self):
+
+        if self.parent:
+            pos = self.getAbsolutePosition()
+            return pygame.Rect(pos.x, pos.y, self.rect[2], self.rect[3])
+
+        return self.rect
+
     def addChild(self, child):
         assert(child)
         self._children.append(child)
+        child.setParent(self)
         self.updateAll()
 
     def removeChild(self, child):

@@ -8,3 +8,10 @@ class CardSlotController (Controller):
         super(CardSlotController, self).__init__()
         self.card = None # contains reference to a card or None
         self.view = CardSlotView()
+
+    def addCard(self, card):
+
+        # TODO: Check to see if there are other cards in the slot already
+
+        self.model.card = card
+        self.view._children = [card.view]
