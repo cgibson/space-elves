@@ -43,4 +43,4 @@ class GameController (Controller):
             print "mousedown"
             if event.mouseButton == 2:
                 print "right click"
-                g.event_manager.post(events.StartTurn)
+                self.board.lanes[0].startTurn(0)
