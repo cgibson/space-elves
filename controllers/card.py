@@ -1,6 +1,6 @@
 from controllers.controller import Controller
 from views.card import CardView
-from events.event import CardClicked
+from events.event import MouseButtonPressedEvent
 from util.math import *
 
 class CardController (Controller):
@@ -13,5 +13,6 @@ class CardController (Controller):
     def notify(self, event):
         super(Controller, self).notify(event)
 
-        if isinstance(event, CardClicked):
-            self.view.visible = not self.view.visible
+        if isinstance(event, MouseButtonPressedEvent):
+            if self.view.inBounds(event.mousePos):
+                self.view.visible = not self.view.visible

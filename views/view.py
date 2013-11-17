@@ -2,9 +2,9 @@ from events.listener import EventListener
 
 import pygame
 import global_mod as g
-from util.math import Position
+from util.math import *
 
-class View (EventListener):
+class View (object):
     
     def __init__(self, rect=pygame.Rect(0,0,10,10)):
         super(View, self).__init__()
