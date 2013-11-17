@@ -38,9 +38,11 @@ class View (EventListener):
                         self.rect[1])
 
     @position.setter
-    def set_position(self, position):
-        self.rect[0] = position.x
-        self.rect[1] = position.y
+    def position(self, position):
+        self.rect = pygame.Rect(position.x,
+                                position.y,
+                                self.rect[2],
+                                self.rect[3])
 
     def inBounds(self, pos):
         return ((pos.x > self.rect[0]) and

@@ -4,6 +4,7 @@ import pygame
 
 from controllers.event import *
 from controllers.input import *
+from controllers.resource import *
 
 from data.game.defaultboard import * #HACK
 
@@ -11,7 +12,11 @@ from data.game.defaultboard import * #HACK
 import global_mod as g
 
 class App (object):
-    def run(self, sceneGraph=DefaultBoardSceneGraph()):
+
+    def __init__(self, sceneGraph=DefaultBoardSceneGraph()):
+        self.sceneGraph = sceneGraph
+
+    def run(self):
         
         # Initalize pygame framework.
         pygame.init()
@@ -22,12 +27,13 @@ class App (object):
         g.screen = pygame.display.set_mode(size)
         g.event_manager = EventController()
         g.input_manager = InputController()
+        g.image_manager = ImageController()
 
         # Initialize Game Board from data directory.
         #boardsDirectory = "./data/game/"
         #boardDataFile = os.listdir(boardsDirectory)[0] # select the first board found for now
         #Can't get this to work: imp.load_source('data.game.defaultboard', boardsDirectory + boardDataFile)
-        rootController = sceneGraph.initControllers()
+        rootController = self.sceneGraph.initControllers()
         
         # Main game loop.
         while 1:
@@ -40,7 +46,7 @@ class App (object):
     
             # Rendering
             g.screen.fill(black)
-            sceneGraph.root.draw()
+            self.sceneGraph.root.draw()
             pygame.display.flip()
     
 if __name__ == "__main__":

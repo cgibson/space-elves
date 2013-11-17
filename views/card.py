@@ -3,19 +3,15 @@
 
 from sprite import *
 from animation import *
-from controllers.resource import ImageController
-
-image_loader = ImageController()
+import global_mod as g
 
 class CardView (SpriteView):
 
     def __init__(self, pos):
         super(CardView, self).__init__( (pos.x, pos.y, 100, 100) )
 
-        global image_loader
-
-        image_loader.card_front = "data/img/card_front.jpg"
-        image_loader.card_back = "data/img/card_back.jpg"
+        g.image_manager.card_front = "data/img/card_front.jpg"
+        g.image_manager.card_back = "data/img/card_back.jpg"
 
 
         self.visible = False
@@ -28,9 +24,9 @@ class CardView (SpriteView):
 
     def draw(self):
         if self.visible:
-            g.screen.blit(image_loader.card_front, (100,100,50,50))
+            g.screen.blit(g.image_manager.card_front, (100,100,50,50))
         else:
-            g.screen.blit(image_loader.card_back, (100,100,50,50))
+            g.screen.blit(g.image_manager.card_back, (100,100,50,50))
 
         #super(Card, self).draw()
 

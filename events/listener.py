@@ -9,10 +9,12 @@ class EventListener (object):
     def notify(self, event):
         pass
 
+    @property
     def listening(self):
         return self._listening
 
-    def setListening(self, listening):
+    @listening.setter
+    def listening(self, listening):
         self._listening = listening
 
         if listening:
