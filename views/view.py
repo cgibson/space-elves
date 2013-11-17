@@ -28,6 +28,7 @@ class View (object):
         return self.position
 
     def addChild(self, child):
+        assert(child)
         self._children.append(child)
         self.updateAll()
 

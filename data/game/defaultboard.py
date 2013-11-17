@@ -36,7 +36,7 @@ class DefaultBoardSceneGraph (SceneGraph):
         g.image_manager.ship_bottom  = "data/img/board_bottom.png"
         g.image_manager.board_back   = "data/img/board_background.png"
         
-        # init controllers which init views/models
+        # Initialize controllers which will in turn initialize the views and models.      
         gameController = GameController()
         gameController.board = BoardController()
         gameController.board.lanes.append(LaneController(5))
@@ -58,7 +58,7 @@ class DefaultBoardSceneGraph (SceneGraph):
             for cardNumber in range(0,7):
                 player.hand.cards.append(CardController())
         
-        # assemble the views in a sensible heirarchy for this board
+        # Assemble the views in a sensible parent/child heirarchy for this board.        
         for lane in gameController.board.lanes:
             for cardSlot in lane.cardSlots:
                 lane.view.addChild(cardSlot.view)
@@ -67,15 +67,36 @@ class DefaultBoardSceneGraph (SceneGraph):
         for player in gameController.players:
             gameController.view.addChild(player.view)
             player.view.addChild(player.ship.view)
-            #player.view.children.append(player.deck.view)
+            player.view.addChild(player.deck.view)
             player.view.addChild(player.hand.view)
             #for card in player.deck.cards:
-            #    player.deck.view.append(card.view)
+            #    player.deck.view.addChild(card.view)
             for card in player.hand.cards:
                 player.hand.view.addChild(card.view)
-        #for lane in gameController.board.lanes:
-        #    lane.view.append()
-            
+        
+        # Dimensions taken from https://www.dropbox.com/s/kd4u1ee5orponpn/ui-mockup3.jpg
+        handMargin = Dimensions(450,0)
+        screenSize = Dimensions(1280,720)
+        handSize = Dimensions(screenSize.x-handMargin.x*2, 270)
+        laneSize = Dimensions(170, 420)
+        shipSize = Dimensions(1280,150)
+        
+        # Set the positions & sizes.
+        gameController.view.size = screenSize
+        gameController.players[0].hand.view.position = Position(handMargin.x, handMargin.y + handSize.y / 2)
+        gameController.players[0].hand.view.size     = handSize
+        gameController.players[0].ship.view.position = Position(0, 0)
+        gameController.players[1].ship.view.size     = shipSize
+        gameController.players[1].hand.view.size     = handSize
+        gameController.players[1].hand.view.position = Position(handMargin.x, screenSize.y - handMargin.y - handSize.y/2)
+        gameController.players[1].ship.view.position = Position(0, screenSize.y - handSize.y)
+        gameController.players[1].ship.view.size     = shipSize
+        gameController.board.lanes[0].view.size     = laneSize
+        gameController.board.lanes[0].view.position = Position(230+laneSize.x*0, 150)
+        gameController.board.lanes[1].view.size     = laneSize
+        gameController.board.lanes[1].view.position = Position(230+laneSize.x*2, 150)
+        gameController.board.lanes[2].view.size     = laneSize
+        gameController.board.lanes[2].view.position = Position(230+laneSize.x*4, 150)
         self.root = gameController.view
     
     def initControllers(self):
