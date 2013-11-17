@@ -22,11 +22,9 @@ class LaneController (Controller):
         if slotNum > len(self.cardSlots) - 1:
             #You've hit the enemy ship.
             g.event_manager.post(events.ShipDamage(self, card))
-            card.explode()
         elif slotNum == -1:
             #You've hit the hero ship
             g.event_manager.post(events.ShipDamage(self, card))
-            card.explode()
         else:
             if self.cardSlots[slotNum].isOccupied():
                 print card.model
@@ -49,17 +47,27 @@ class LaneController (Controller):
         #create collection of cards in the current lane
         processQueue = Queue.Queue()
         for priorityRange in range(0, 3, 1):
-            for x in range(len(self.cardSlots) - 1, -1 , -1):
-                if self.cardSlots[x].isOccupied():
-                    if self.cardSlots[x].card.model.priority == priorityRange:
-                        processQueue.put((self.cardSlots[x].card.model.priority, self.cardSlots[x].card, x)) #stores the priority, the card controller, and the index to the slot of the lane
+            if player == 1:
+                for x in range(len(self.cardSlots) - 1, -1 , -1):
+                    if self.cardSlots[x].isOccupied():
+                        if self.cardSlots[x].card.model.priority == priorityRange:
+                            processQueue.put((self.cardSlots[x].card.model.priority, self.cardSlots[x].card, x)) #stores the priority, the card controller, and the index to the slot of the lane
+            else:
+                for x in range(0, len(self.cardSlots) - 1, 1):
+                    if self.cardSlots[x].isOccupied():
+                        if self.cardSlots[x].card.model.priority == priorityRange:
+                            processQueue.put((self.cardSlots[x].card.model.priority, self.cardSlots[x].card, x)) #stores the priority, the card controller, and the index to the slot of the lane
 
         print processQueue
         while not processQueue.empty():
             i = processQueue.get()
-            print "moving %s to %s" %(i[2], i[2]+1)
             self.removeCard(i[2])
-            self.placeCard(i[1], i[2]+1)
+            if player == 1:
+                print "moving %s to %s" %(i[2], i[2]+1)
+                self.placeCard(i[1], i[2]+1)
+            else:
+                print "moving %s to %s" %(i[2], i[2]-1)
+                self.placeCard(i[1], i[2]-1)
         #for x in range(len(self.cardSlots)-1, 0, -1):
         #    if x != 0:
         #        self.cardSlots[x].card = self.cardSlots[x-1].card

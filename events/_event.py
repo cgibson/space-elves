@@ -4,7 +4,6 @@
 import pygame
 from util.math import *
 
-
 class Event (object):
     """ Superclass for all events in the game
     """
@@ -15,8 +14,8 @@ class Event (object):
     def __str__(self):
         return self.name
 
-class StartTurn (object):
+class StartTurn (Event):
 
-    def __init__(self, player):
+    def __init__(self):
         super(StartTurn, self).__init__("Start Turn")
-        self.player = player
+

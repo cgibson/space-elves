@@ -44,9 +44,13 @@ class GameController (Controller):
             else:
                 print "No card grabbed"
 
+        if isinstance(event, events.StartTurn):
+            print "Starting Turn"
+            for lane in self.board.lanes:
+                lane.startTurn(self.playersTurn)
+
         if isinstance(event, events.MouseDown):
             print "mousedown"
             if event.mouseButton == 2:
                 print "right click"
-                for lane in self.board.lanes:
-                    lane.startTurn(0)
+                g.event_manager.post(events.StartTurn())
