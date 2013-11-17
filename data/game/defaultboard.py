@@ -48,8 +48,8 @@ class DefaultBoardSceneGraph (BoardModel):
             playerView = PlayerView()
             boardView.children.append(playerView)
             playerView.children.append(DeckView())
-        #playerView
-        #gameView.children.append(boardView)
+        playerView
+        gameView.children.append(boardView)
 
         self.root = gameView
     

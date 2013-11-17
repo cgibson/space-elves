@@ -1,5 +1,5 @@
+from views.view import View
 
-
-class LaneView (object):
+class LaneView (View):
     def __init__(self):
-        pass
+        super(LaneView, self).__init__()
