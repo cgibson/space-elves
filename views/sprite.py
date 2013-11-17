@@ -12,7 +12,7 @@ class SpriteView (View):
         self.image = None
 
         if image:
-            self.setImage(image)
+            self.set_image(image)
 
     def set_image(self, image):
         self.image = pygame.image.load(image)

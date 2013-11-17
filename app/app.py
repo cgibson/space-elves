@@ -11,6 +11,10 @@ from data.game.defaultboard import * #HACK
 # Initialization
 import global_mod as g
 
+g.event_manager = EventController()
+g.input_manager = InputController()
+g.image_manager = ImageController()
+
 class App (object):
 
     def __init__(self, sceneGraph=DefaultBoardSceneGraph()):
@@ -22,12 +26,10 @@ class App (object):
         pygame.init()
 
         # Initialize window
-        size = width, height = 500, 500 # should be pulled from screen resolution, but this is fine for now
+        size = width, height = 1280, 720 # should be pulled from screen resolution, but this is fine for now
         black = 0, 0, 0
         g.screen = pygame.display.set_mode(size)
-        g.event_manager = EventController()
-        g.input_manager = InputController()
-        g.image_manager = ImageController()
+
 
         # Initialize Game Board from data directory.
         #boardsDirectory = "./data/game/"

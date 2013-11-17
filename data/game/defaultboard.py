@@ -19,10 +19,17 @@ from views.player import PlayerView
 from views.deck import DeckView
 
 from util.math import *
-
+import global_mod as g
 class DefaultBoardSceneGraph (BoardModel):
     def __init__(self):
         #self.size = # The canvas size can be calculated from the board sprites perhaps
+        
+        # load images
+        g.image_manager.card_back    = "data/img/card_back.jpg"
+        g.image_manager.board_back   = "data/img/board_background.png"
+        g.image_manager.card_front   = "data/img/card_front.jpg"
+        g.image_manager.ship_top     = "data/img/board_top.jpg"
+        g.image_manager.ship_bottom  = "data/img/board_bottom.jpg"
         
         # init controllers
         gameController = GameController()
