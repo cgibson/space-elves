@@ -28,6 +28,10 @@ class Position (object):
     def __len__(self):
         return 2
 
+    def reset(self):
+        self.x = 0
+        self.y = 0
+
 
 class Dimensions (Position):
     pass
