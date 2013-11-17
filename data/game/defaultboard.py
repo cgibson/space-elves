@@ -61,11 +61,11 @@ class DefaultBoardSceneGraph (BoardModel):
             gameController.view.children.append(player.view)
             player.view.children.append(player.ship.view)
             #player.view.children.append(player.deck.view)
-            #player.view.children.append(player.hand.view)
+            player.view.children.append(player.hand.view)
             #for card in player.deck.cards:
             #    player.deck.view.append(card.view)
-            #for card in player.hand.cards:
-            #    player.hand.view.append(card.view)
+            for card in player.hand.cards:
+                player.hand.view.children.append(card.view)
         #for lane in gameController.board.lanes:
         #    lane.view.append()
             
