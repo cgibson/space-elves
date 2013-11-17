@@ -5,7 +5,7 @@ class ResourceController(object):
     def __init__(self, loader):
         self.__dict__.update(dict(
             names = {},
-            cache = weakref.WeakValueDictionary(),
+            cache = {},#weakref.WeakValueDictionary(),
             loader = loader
         ))
         
@@ -15,9 +15,9 @@ class ResourceController(object):
     def __getattr__(self, name):
         try:
             img = self.cache[name]
-        except KeyError:
+        except KeyError, e:
             img = self.loader(self.names[name])
-            img.convert_alpha()
+            #img.convert_alpha()
             self.cache[name] = img
         return img
         
