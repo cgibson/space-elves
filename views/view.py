@@ -6,7 +6,7 @@ from util.math import Position
 from events.event import *
 
 class View (EventListener):
-
+    
     def __init__(self, rect=pygame.Rect(0,0,10,10)):
         super(View, self).__init__()
 

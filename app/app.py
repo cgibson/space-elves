@@ -11,7 +11,7 @@ from data.game.defaultboard import * #HACK
 import global_mod as g
 
 class App (object):
-    def run(self):
+    def run(self, sceneGraph=DefaultBoardSceneGraph()):
         
         # Initalize pygame framework.
         pygame.init()
@@ -27,7 +27,6 @@ class App (object):
         #boardsDirectory = "./data/game/"
         #boardDataFile = os.listdir(boardsDirectory)[0] # select the first board found for now
         #Can't get this to work: imp.load_source('data.game.defaultboard', boardsDirectory + boardDataFile)
-        sceneGraph = DefaultBoardSceneGraph() #HACk, load as if it's a module. =/
         rootController = sceneGraph.initControllers()
         
         # Main game loop.

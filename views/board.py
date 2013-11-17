@@ -1,5 +1,6 @@
+from views.view import View
 
-
-class BoardView(object):
+class BoardView(View):
     def __init__(self):
+        super(BoardView, self).__init__()
         pass
