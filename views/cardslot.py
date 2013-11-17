@@ -12,6 +12,7 @@ class CardSlotView (SpriteView):
         rect = self.getAbsoluteRect()
 
         if self.cardView:
+            print "DRAWING IN %s" % rect
             g.screen.fill((255,255,255), rect)
         else:
             super(CardSlotView, self).draw()

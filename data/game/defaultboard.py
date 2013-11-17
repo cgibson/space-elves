@@ -59,6 +59,9 @@ class DefaultBoardSceneGraph (SceneGraph):
         player2 = PlayerController()
         gameController.players.append(player1)
         gameController.players.append(player2)
+
+        gameController.currentPlayer = 1
+        gameController.playersTurn = 1
         for playerNum,player in enumerate(gameController.players):
             player.deck = DeckController()
             player.hand = HandController(False if playerNum is 0 else True)

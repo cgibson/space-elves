@@ -27,7 +27,7 @@ class GameController (Controller):
         if isinstance(event, events.MouseReleased):
             print "Got mouse released event"
             grabbedCard = None
-            for card in self.players[0].hand.cards:
+            for card in self.players[self.currentPlayer].hand.cards:
                 if card.view.grabbed:
                     grabbedCard = card
                     break
@@ -37,7 +37,7 @@ class GameController (Controller):
                 for lane in self.board.lanes:
                     if lane.view.inBounds(event.mousePos):
                         lane.placeCard(grabbedCard, 0)
-                        self.players[0].hand.removeCard(grabbedCard)
+                        self.players[self.currentPlayer].hand.removeCard(grabbedCard)
                         break
                 else:
                     card.release()
