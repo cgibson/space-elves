@@ -20,7 +20,7 @@ class HandController (Controller):
             cards = self.cards
             cards.reverse()
             for idx, card in enumerate(cards, 0):
-                if card.view.inBounds(event.mousePos):
+                if card.view.visible and card.view.inBounds(event.mousePos):
                     card.grab()
                     break
 

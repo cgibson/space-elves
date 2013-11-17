@@ -97,10 +97,12 @@ class View (object):
         self.update()
 
     def inBounds(self, pos):
-        return ((pos.x > self.rect[0]) and
-               (pos.y > self.rect[1]) and
-               (pos.x < self.rect[0] + self.rect[2]) and
-               (pos.y < self.rect[1] + self.rect[3]))
+
+        rect = self.getAbsoluteRect()
+        return ((pos.x > rect[0]) and
+                (pos.y > rect[1]) and
+                (pos.x < rect[0] + rect[2]) and
+                (pos.y < rect[1] + rect[3]))
 
     def update(self):
         pass
