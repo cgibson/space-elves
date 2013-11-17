@@ -5,18 +5,28 @@ from model.board import *
 from views.board import *
 from views.lane import *
 from views.cardslot import *
+from views.game import *
+from views.card import *
 from controllers.board import * 
 from controllers.lane import * 
-from controllers.cardslot import * 
+from controllers.cardslot import *
+from util.math import *
 
 class DefaultBoardSceneGraph (BoardModel):
     def __init__(self):
         #self.size = # The canvas size can be calculated from the board sprites perhaps
-        pass
+        self.initViews()
         
     def initViews(self):
 
-        
+        gameView = GameView()
+        cardView = CardView(Position(100,100))
+
+        gameView.children.append(cardView)
+
+        self.root = gameView
+
+
         #boardView = BoardView(0,0)
         #boardView.lane.append(LaneController(5)) # top
         #boardView.lane.append(LaneController(5)) # mid

@@ -2,7 +2,6 @@ import sys, os, imp
 
 import pygame
 
-from views.card import Card
 from event.manager import EventManager
 
 from data.game.defaultboard import * #HACK
@@ -38,8 +37,8 @@ class App (object):
     
             # Rendering
             g.screen.fill(black)
-            #card.draw()
+            sceneGraph.root.draw()
             pygame.display.flip()
     
-    if __name__ == "__main__":
-        run()
+if __name__ == "__main__":
+    App().run()

@@ -3,5 +3,6 @@ from event.listener import EventListener
 
 class Controller (EventListener):
 
-    def __init__(self, model=None):
-        self.model = model
+    def __init__(self):
+        self.model = None
+        self.view = None

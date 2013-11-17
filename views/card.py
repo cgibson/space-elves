@@ -3,13 +3,22 @@
 
 from sprite import *
 from animation import *
+from app.resource import ImageLoader
 
-class Card (SpriteView):
+image_loader = ImageLoader()
 
-    def __init__(self):
-        super(Card, self).__init__("data/img/card_back.jpg")
+class CardView (SpriteView):
 
-        self.visible = True
+    def __init__(self, pos):
+        super(CardView, self).__init__( (pos.x, pos.y, 100, 100) )
+
+        global image_loader
+
+        image_loader.card_front = "data/img/card_front.jpg"
+        image_loader.card_back = "data/img/card_back.jpg"
+
+
+        self.visible = False
         self.status = STATIC
         self.effects = {
             "hover" : False,
@@ -18,4 +27,9 @@ class Card (SpriteView):
         }
 
     def draw(self):
-        super(Card, self).draw()
+        if self.visible:
+            g.screen.blit(image_loader.card_front, (100,100,50,50))
+        else:
+            g.screen.blit(image_loader.card_back, (100,100,50,50))
+
+        #super(Card, self).draw()
