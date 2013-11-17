@@ -20,9 +20,14 @@ class ResourceController(object):
             #img.convert_alpha()
             self.cache[name] = img
         return img
-        
+
+
+class FontController(ResourceController):
+    pass
+    #def __init__(self):
+    #    ResourceController.__init__(self, pygame.font.SysF)
+
     
 class ImageController(ResourceController):
     def __init__(self):
         ResourceController.__init__(self, pygame.image.load)
-        
