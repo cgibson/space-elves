@@ -29,7 +29,7 @@ class TestSceneGraph (SceneGraph):
         c.view.addChild(pc.view)
 
         # Code for the hand controller
-        hand = HandController(visible=True)
+        hand = HandController(visible=False)
         hand.view.position = Position(100,0)
         hand.view.size = Dimensions(800, 270)
         pc.hand = hand
