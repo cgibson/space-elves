@@ -16,14 +16,11 @@ class CardController (Controller):
     def notify(self, event):
         super(Controller, self).notify(event)
 
-        if isinstance(event, events.MouseReleased):
-            if self.view.grabbed:
-                self.view.grabbed = False
-
     def setVisible(self, visible):
         self.model.visible = visible
         self.view.visible = visible
         self.update()
+
 
     def playToSlot(self, slot):
         slot.addCard(self)
@@ -32,8 +29,12 @@ class CardController (Controller):
         self.update()
 
     def grab(self):
+        print "CARD IS GRABBED"
         self.view.grabbed = True
         self.view.grabbedPos = Position(*pygame.mouse.get_pos())
+
+    def release(self):
+        self.view.grabbed = False
 
     #self.card is attacking the passed card
     #apply damage and return the winning object

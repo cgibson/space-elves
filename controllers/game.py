@@ -38,6 +38,8 @@ class GameController (Controller):
                         lane.placeCard(grabbedCard, 0)
                         self.players[0].hand.removeCard(grabbedCard)
                         break
+                else:
+                    card.release()
             else:
                 print "No card grabbed"
 
