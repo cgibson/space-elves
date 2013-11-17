@@ -15,3 +15,6 @@ class CardSlotController (Controller):
 
         self.card = card
         self.view.setChildren([card.view])
+        
+    def isOccupied(self):
+        return (self.card != None)

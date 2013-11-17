@@ -18,8 +18,14 @@ class LaneController (Controller):
             self.view.addChild(slot.view)
 
     def placeCard(self, card, slotNum):
+        test = self.cardSlots[slotNum].isOccupied();
+        if self.cardSlots[slotNum].isOccupied():
+            if card.model.ownerId == self.cardSlots[slotNum].card.model.ownerId:
+                print "conflict occured"
         self.cardSlots[slotNum].card = card
         self.cardSlots[slotNum].view.card = card
+
+
 
     def startTurn(self, player):
         for x in range(len(self.cardSlots)-1, 0, -1):
