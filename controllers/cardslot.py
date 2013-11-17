@@ -13,5 +13,5 @@ class CardSlotController (Controller):
 
         # TODO: Check to see if there are other cards in the slot already
 
-        self.model.card = card
-        self.view._children = [card.view]
+        self.card = card
+        self.view.setChildren([card.view])

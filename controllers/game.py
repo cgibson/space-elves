@@ -26,7 +26,7 @@ class GameController (Controller):
         if isinstance(event, events.MouseReleased):
             print "Got mouse released event"
             grabbedCard = None
-            for card in self.players[0].hand.model.cards:
+            for card in self.players[0].hand.cards:
                 if card.view.grabbed:
                     grabbedCard = card
                     break

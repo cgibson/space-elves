@@ -11,12 +11,13 @@ class HandController (Controller):
         self.model = HandModel()
         self.model.visible = visible
         self.view.visible = visible
+        self.cards = []
 
     def notify(self, event):
         if (isinstance(event, events.MouseDown)):
 
             # Go for last drawn, reverse the list
-            cards = self.model.cards
+            cards = self.cards
             cards.reverse()
             for idx, card in enumerate(cards, 0):
                 if card.view.inBounds(event.mousePos):
@@ -32,13 +33,13 @@ class HandController (Controller):
         self.update()
 
     def update(self):
-        for card in self.model.cards:
+        for card in self.cards:
             card.setVisible(self.model.visible)
 
 
     def addCard(self, card):
         card.setVisible(self.model.visible)
-        self.model.cards.append(card)
+        self.cards.append(card)
         self.view.addChild(card.view)
 
 
@@ -46,8 +47,8 @@ class HandController (Controller):
 
         try:
             self.view.removeChild(card.view)
-            idx = self.model.cards.index(card)
-            del self.model.cards[idx]
+            idx = self.cards.index(card)
+            del self.cards[idx]
 
         except Exception, e:
             raise ValueError("No such card in hand. %s" % str(e))

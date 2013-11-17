@@ -44,6 +44,12 @@ class View (object):
         child.setParent(self)
         self.updateAll()
 
+    def setChildren(self, cards):
+        self._children = []
+        for card in cards:
+            self.addChild(card)
+
+
     def removeChild(self, child):
 
         try:
