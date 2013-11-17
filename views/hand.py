@@ -31,7 +31,9 @@ class HandView (View):
                 curOffset = (self.cardSpacing * 0.5)
             else:
                 widthDiff = self.size.x - totalWidth
-                self.cardSpacing = widthDiff / (len(self._children) - 1)
+                self.cardSpacing = 100
+                if len(self._children) != 0:
+                    self.cardSpacing = widthDiff / (len(self._children))
                 curOffset = 0
 
             for card in self._children:
