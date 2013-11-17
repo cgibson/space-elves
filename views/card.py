@@ -12,6 +12,7 @@ class CardView (SpriteView):
         super(CardView, self).__init__( (pos.x, pos.y, 200, 270) )
 
         self.visible = False
+        self.played = False
         self.status = STATIC
         self.effects = {
             "hover" : False,
@@ -22,7 +23,9 @@ class CardView (SpriteView):
         self.listening = True
 
     def draw(self):
-        if self.visible:
+        if self.played:
+            g.screen.blit(g.image_manager.card_slot, (100,100,50,50))
+        elif self.visible:
             g.screen.blit(g.image_manager.card_front, (100,100,50,50))
         else:
             g.screen.blit(g.image_manager.card_back, (100,100,50,50))

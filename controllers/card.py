@@ -14,4 +14,4 @@ class CardController (Controller):
         super(Controller, self).notify(event)
 
         if isinstance(event, CardClicked):
-            self.view.visible = not self.view.visible
+            self.view.played = not self.view.played
