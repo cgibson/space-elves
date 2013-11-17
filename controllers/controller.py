@@ -9,7 +9,6 @@ class Controller (EventListener):
         self.model = None
         self.view = None
         self.listening = True
-        print "I am listening"
 
         Controller._controllers.append(self)
 

@@ -13,7 +13,5 @@ class CardController (Controller):
     def notify(self, event):
         super(Controller, self).notify(event)
 
-        print "I got something..."
-
         if isinstance(event, CardClicked):
             print "I HAVE RECEIVED CARD CLICKED!"

@@ -17,8 +17,8 @@ g.image_manager = ImageController()
 
 class App (object):
 
-    def __init__(self, sceneGraph=DefaultBoardSceneGraph()):
-        self.sceneGraph = sceneGraph
+    def __init__(self, sceneGraphClass=DefaultBoardSceneGraph):
+        self.sceneGraph = sceneGraphClass()
 
     def run(self):
         

@@ -16,6 +16,5 @@ class EventController (Controller):
             del self.listeners[listener]
 
     def post(self, event):
-        print len(self.listeners)
         for listener in self.listeners.keys():
             listener.notify(event)
