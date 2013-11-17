@@ -2,8 +2,9 @@ import sys, os, imp
 
 import pygame
 
-from events.manager import EventManager
-from input.manager import InputManager
+from controllers.event import *
+from controllers.event import *
+from controllers.input import *
 
 from data.game.defaultboard import * #HACK
 
@@ -20,8 +21,8 @@ class App (object):
         size = width, height = 500, 500 # should be pulled from screen resolution, but this is fine for now
         black = 0, 0, 0
         g.screen = pygame.display.set_mode(size)
-        g.event_manager = EventManager()
-        g.input_manager = InputManager()
+        g.event_manager = EventController()
+        g.input_manager = InputController()
 
         # Initialize Game Board from data directory.
         #boardsDirectory = "./data/game/"

@@ -2,7 +2,7 @@ import pygame
 from events.event import *
 
 
-class InputManager (object):
+class InputController (object):
 
     def __init__(self):
         self.mouse_buttons = [0,0,0]

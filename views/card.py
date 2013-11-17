@@ -3,9 +3,9 @@
 
 from sprite import *
 from animation import *
-from app.resource import ImageLoader
+from controllers.resource import ImageController
 
-image_loader = ImageLoader()
+image_loader = ImageController()
 
 class CardView (SpriteView):
 

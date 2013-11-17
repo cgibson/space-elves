@@ -1,4 +1,4 @@
-class EventManager (object):
+class EventController (object):
     """ Responsible for coordinating communication to any listeners
     """
 

@@ -1,7 +1,7 @@
 import pygame
 import weakref
  
-class ResourceLoader(object):
+class ResourceController(object):
     def __init__(self, loader):
         self.__dict__.update(dict(
             names = {},
@@ -21,6 +21,6 @@ class ResourceLoader(object):
         return img
         
     
-class ImageLoader(ResourceLoader):
+class ImageController(ResourceController):
     def __init__(self):
-        ResourceLoader.__init__(self, pygame.image.load)
+        ResourceController.__init__(self, pygame.image.load)
