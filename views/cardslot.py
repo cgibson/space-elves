@@ -1,5 +1,5 @@
+from views.sprite import SpriteView
 
-
-class CardSlotView (object):
+class CardSlotView (SpriteView):
     def __init__():
-        pass
+        super(CardSlotView, self).__init__()

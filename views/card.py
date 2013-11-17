@@ -11,10 +11,6 @@ class CardView (SpriteView):
     def __init__(self, pos):
         super(CardView, self).__init__( (pos.x, pos.y, 200, 270) )
 
-        g.image_manager.card_front = "data/img/card_front.jpg"
-        g.image_manager.card_back = "data/img/card_back.jpg"
-
-
         self.visible = False
         self.status = STATIC
         self.effects = {

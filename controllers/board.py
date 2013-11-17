@@ -8,3 +8,4 @@ class BoardController (Controller):
     def __init__(self):
         self.model = BoardModel()
         self.view = BoardView()
+        self.lanes = []

@@ -6,6 +6,10 @@ from controllers.lane import LaneController
 from controllers.cardslot import CardSlotController
 from controllers.game import GameController
 from controllers.player import PlayerController
+from controllers.deck import DeckController
+from controllers.hand import HandController
+from controllers.card import CardController
+from controllers.ship import ShipController
 
 from models.board import BoardModel
 from models.player import PlayerModel
@@ -26,39 +30,32 @@ class DefaultBoardSceneGraph (BoardModel):
         
         # load images
         g.image_manager.card_back    = "data/img/card_back.jpg"
-        g.image_manager.board_back   = "data/img/board_background.png"
         g.image_manager.card_front   = "data/img/card_front.jpg"
-        g.image_manager.ship_top     = "data/img/board_top.jpg"
-        g.image_manager.ship_bottom  = "data/img/board_bottom.jpg"
+        g.image_manager.card_slot    = "data/img/card_slot.png"
+        g.image_manager.ship_top     = "data/img/board_top.png"
+        g.image_manager.ship_bottom  = "data/img/board_bottom.png"
+        g.image_manager.board_back   = "data/img/board_background.png"
         
         # init controllers
         gameController = GameController()
         gameController.board = BoardController()
+        gameController.board.lanes.append(LaneController(5))
+        gameController.board.lanes.append(LaneController(5))
+        gameController.board.lanes.append(LaneController(5))
         player1 = PlayerController()
-        gameController.players.append(player1)
         player2 = PlayerController()
+        gameController.players.append(player1)
         gameController.players.append(player2)
         for player in gameController.players:
-            player
+            player.deck = DeckController()
+            player.hand = HandController()
+            player.ship = ShipController()
+            for cardNumber in range(0,30):
+                player.deck.cards.append(CardController())
+            for cardNumber in range(0,7):
+                player.hand.cards.append(CardController())
         
-        # init model
-        gameController.model.players.append(PlayerModel())
-        gameController.model.players.append(PlayerModel())
-        
-        # init views
-        gameView = GameView()
-        boardView = BoardView()
-        boardView.children.append(LaneView()) # left
-        boardView.children.append(LaneView()) # middle
-        boardView.children.append(LaneView()) # right
-        for playerModel in gameController.model.players:
-            playerView = PlayerView()
-            boardView.children.append(playerView)
-            playerView.children.append(DeckView())
-        playerView
-        gameView.children.append(boardView)
-
-        self.root = gameView
+        self.root = gameController.view
     
     def initControllers(self):
         pass
