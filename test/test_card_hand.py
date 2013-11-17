@@ -3,7 +3,7 @@ from app import *
 from controllers import *
 import global_mod as g
 
-class TestSceneGraph (object):
+class TestSceneGraph (SceneGraph):
 
     def __init__(self):
         self.root = None

@@ -10,6 +10,7 @@ from controllers.deck import DeckController
 from controllers.hand import HandController
 from controllers.card import CardController
 from controllers.ship import ShipController
+from util.scenegraph import *
 
 from models.board import BoardModel
 from models.player import PlayerModel
@@ -24,7 +25,7 @@ from views.deck import DeckView
 
 from util.math import *
 import global_mod as g
-class DefaultBoardSceneGraph (BoardModel):
+class DefaultBoardSceneGraph (SceneGraph):
     def __init__(self):
         #self.size = # The canvas size can be calculated from the board sprites perhaps
         

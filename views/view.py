@@ -13,6 +13,7 @@ class View (object):
         self.parent = None
         self.fillcolor = (255,255,0)
         self.rect = rect
+        self.cursorInteract = True
 
     def getAbsolutePosition(self):
 
