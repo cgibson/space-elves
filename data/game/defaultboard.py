@@ -61,7 +61,7 @@ class DefaultBoardSceneGraph (SceneGraph):
         gameController.players.append(player2)
         for playerNum,player in enumerate(gameController.players):
             player.deck = DeckController()
-            player.hand = HandController(True if playerNum is 0 else False)
+            player.hand = HandController(False if playerNum is 0 else True)
             player.ship = ShipController()
             #for cardNumber in range(0,30):
             #    player.deck.addCard(CardController(playerNum))
