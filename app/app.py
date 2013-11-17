@@ -2,7 +2,8 @@ import sys, os, imp
 
 import pygame
 
-from event.manager import EventManager
+from events.manager import EventManager
+from input.manager import InputManager
 
 from data.game.defaultboard import * #HACK
 
@@ -20,6 +21,7 @@ class App (object):
         black = 0, 0, 0
         g.screen = pygame.display.set_mode(size)
         g.event_manager = EventManager()
+        g.input_manager = InputManager()
 
         # Initialize Game Board from data directory.
         #boardsDirectory = "./data/game/"
@@ -30,7 +32,9 @@ class App (object):
         
         # Main game loop.
         while 1:
-            
+
+            g.input_manager.update()
+
             # Application event handling.
             for event in pygame.event.get():
                 if event.type == pygame.QUIT: sys.exit()

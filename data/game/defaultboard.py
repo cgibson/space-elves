@@ -1,7 +1,7 @@
 ### We use python files as data files. This will instantiate a default set of views 
 ### for the game using constructors. This way we don't have to write any file format or parsers
 ### or even interpret standard formats.
-from model.board import *
+from models.board import *
 from views.board import *
 from views.lane import *
 from views.cardslot import *

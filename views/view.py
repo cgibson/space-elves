@@ -1,4 +1,4 @@
-from event.listener import EventListener
+from events.listener import EventListener
 
 import pygame
 import global_mod as g
