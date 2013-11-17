@@ -3,7 +3,6 @@ from events.listener import EventListener
 import pygame
 import global_mod as g
 from util.math import Position
-from events.event import *
 
 class View (EventListener):
     
@@ -49,12 +48,3 @@ class View (EventListener):
                (pos.y > self.rect[1]) and
                (pos.x < self.rect[0] + self.rect[2]) and
                (pos.y < self.rect[1] + self.rect[3]))
-
-    def notify(self, event):
-        print "Got event %s" % event
-        if(isinstance(event, MouseEvent)):
-            print "It is a MouseEvent"
-            if self.inBounds(event.mousePos):
-                print "IN BOUNDS!"
-                for child in self.children:
-                    child.notify(event)

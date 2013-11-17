@@ -3,12 +3,13 @@
 
 from sprite import *
 from animation import *
+from events.event import *
 import global_mod as g
 
 class CardView (SpriteView):
 
     def __init__(self, pos):
-        super(CardView, self).__init__( (pos.x, pos.y, 100, 100) )
+        super(CardView, self).__init__( (pos.x, pos.y, 200, 270) )
 
         g.image_manager.card_front = "data/img/card_front.jpg"
         g.image_manager.card_back = "data/img/card_back.jpg"
@@ -22,6 +23,8 @@ class CardView (SpriteView):
             "Disabled" : False,
         }
 
+        self.listening = True
+
     def draw(self):
         if self.visible:
             g.screen.blit(g.image_manager.card_front, (100,100,50,50))
@@ -31,4 +34,6 @@ class CardView (SpriteView):
         #super(Card, self).draw()
 
     def notify(self, event):
-        print "Card received event: %s" % event
+        if(isinstance(event, MouseEvent)):
+            if self.inBounds(event.mousePos):
+                g.event_manager.post(CardClicked(self))

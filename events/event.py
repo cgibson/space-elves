@@ -35,3 +35,10 @@ class MouseButtonReleasedEvent (MouseEvent):
     def __init__(self, mouseButton):
         super(MouseButtonReleasedEvent, self).__init__()
         self.mouseButton = mouseButton
+
+
+class CardClicked (Event):
+
+    def __init__(self, card):
+        super(CardClicked, self).__init__("Card Clicked")
+        self.card = card

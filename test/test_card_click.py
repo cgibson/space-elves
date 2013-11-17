@@ -6,7 +6,7 @@ from controllers.card import *
 class TestSceneGraph (object):
 
     def __init__(self):
-        pass
+        self.root = None
 
     def initControllers(self):
 
@@ -20,7 +20,6 @@ class TestSceneGraph (object):
         gameController.view.children.append(cardController.view)
 
         self.root = gameController.view
-        gameController.view.listening = True
 
 
 app = App(sceneGraph=TestSceneGraph())

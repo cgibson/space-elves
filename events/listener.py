@@ -18,6 +18,7 @@ class EventListener (object):
         self._listening = listening
 
         if listening:
+            print "setting %s to listen" % str(self)
             g.event_manager.registerListener(self)
         else:
             g.event_manager.unregisterListener(self)
