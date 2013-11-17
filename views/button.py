@@ -11,7 +11,11 @@ class ButtonView (SpriteView):
     def __init__(self, pos, size, text="notext"):
         super(ButtonView, self).__init__( pygame.Rect(pos.x, pos.y, size.x, size.y) )
 
+        print self.rect
         self.text = text
 
     def draw(self):
-        g.screen.fill(self.fillcolor, self.rect)
+
+        rect = self.getAbsoluteRect()
+
+        g.screen.fill(self.fillcolor, rect)

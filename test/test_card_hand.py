@@ -50,8 +50,8 @@ class TestSceneGraph (SceneGraph):
         bc.lanes.append(lane)
         bc.view.addChild(lane.view)
 
-        button = ButtonController(Position(200,200),
-                                  Dimensions(100,50),
+        button = ButtonController(Position(300,300),
+                                  Dimensions(150,50),
                                   "Test")
 
         bc.view.addChild(button.view)
