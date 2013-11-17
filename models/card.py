@@ -8,10 +8,10 @@ class CardModel (Model):
         self.currentPower = 0
         self.attackBonus = 0
         self.movement = 0
-        self.priority = 0 # high is better
+        self.priority = 0 # lower is better
 
         self.visible = False # whether the card is visible to the player
         self.ownerId = ownerId # Current owner
         self.inSlot = False
         self.currentMovement = 0
-        self.priority = 0 # high is better
+        self.priority = 0 # lower is better
