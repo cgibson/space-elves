@@ -1,6 +1,7 @@
-from cardslot import *
+from models.lane import LaneModel
+from controllers.controller import Controller
 
-class LaneController (object):
+class LaneController (Controller):
     
     def __init__(self, numCardSlots):
-        self.cardSlots = [CardSlot()]*3
+        self.model = LaneModel

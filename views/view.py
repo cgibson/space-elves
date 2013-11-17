@@ -5,7 +5,7 @@ import global_mod as g
 from util.math import Position
 
 class View (EventListener):
-
+    
     def __init__(self, rect=pygame.Rect(0,0,10,10)):
         self.children = []
         self.parent = None
