@@ -16,13 +16,13 @@ from views.cardslot import CardSlotView
 from views.game import GameView
 from views.card import CardView
 from views.player import PlayerView
+from views.deck import DeckView
 
 from util.math import *
 
 class DefaultBoardSceneGraph (BoardModel):
     def __init__(self):
         #self.size = # The canvas size can be calculated from the board sprites perhaps
-        self.initViews()
         
         # init controllers
         gameController = GameController()
@@ -31,37 +31,33 @@ class DefaultBoardSceneGraph (BoardModel):
         gameController.players.append(player1)
         player2 = PlayerController()
         gameController.players.append(player2)
-        player1
-
+        for player in gameController.players:
+            player
+        
+        # init model
+        gameController.model.players.append(PlayerModel())
+        gameController.model.players.append(PlayerModel())
+        
         # init views
         gameView = GameView()
         boardView = BoardView()
-        boardView.children.append(LaneView()) # top
-        boardView.children.append(LaneView()) # mid
-        boardView.children.append(LaneView()) # bot
-        #boardView.children.append(PlayerView())
+        boardView.children.append(LaneView()) # left
+        boardView.children.append(LaneView()) # middle
+        boardView.children.append(LaneView()) # right
+        for playerModel in gameController.model.players:
+            playerView = PlayerView()
+            boardView.children.append(playerView)
+            playerView.children.append(DeckView())
+        #playerView
         #gameView.children.append(boardView)
-
-        #gameView.children.append(cardView)
-        #gameView.setListening(True)
 
         self.root = gameView
-
-
-        #boardView = BoardView(0,0)
-        #boardView.lane.append(LaneController(5)) # top
-        #boardView.lane.append(LaneController(5)) # mid
-        #boardView.lane.append(LaneController(5)) # bot
-        # NOT DONE YET, JUST A PLACEHOLDER
-        #gameView.children.append(boardView)
-        #return view
-        pass
-
+    
     def initControllers(self):
         pass
         
     def initModel(self):
-
+        
         pass
         # NOT DONE YET, JUST A PLACEHOLDER
         
