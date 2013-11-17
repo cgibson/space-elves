@@ -22,7 +22,8 @@ class SpriteView (View):
         self.rect = self.image.get_rect()
 
     def draw(self):
+        
         if self.image:
             g.screen.blit(self.image, self.rect)
-        else:
-            super(SpriteView, self).draw()
+        
+        super(SpriteView, self).draw()

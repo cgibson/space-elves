@@ -23,10 +23,11 @@ class View (EventListener):
 
 
     def draw(self):
-
-        r = self.rect
-        r.move(self.getAbsolutePosition())
-        g.screen.fill(self.fillcolor, self.rect)
+        # For Debugging
+        #print("Drawing " + str(self))
+        #r = self.rect
+        #r.move(self.getAbsolutePosition())
+        #g.screen.fill(self.fillcolor, self.rect)
 
         for child in self.children:
             child.draw()

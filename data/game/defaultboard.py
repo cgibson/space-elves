@@ -24,7 +24,7 @@ from views.deck import DeckView
 
 from util.math import *
 import global_mod as g
-class DefaultBoardSceneGraph (BoardModel):
+class DefaultBoardSceneGraph ():
     def __init__(self):
         #self.size = # The canvas size can be calculated from the board sprites perhaps
         
@@ -42,6 +42,9 @@ class DefaultBoardSceneGraph (BoardModel):
         gameController.board.lanes.append(LaneController(5))
         gameController.board.lanes.append(LaneController(5))
         gameController.board.lanes.append(LaneController(5))
+        for lane in gameController.board.lanes:
+            for cardSlotNumber in range(0, 11):
+                lane.cardSlots.append(CardSlotController())
         player1 = PlayerController()
         player2 = PlayerController()
         gameController.players.append(player1)
@@ -56,6 +59,10 @@ class DefaultBoardSceneGraph (BoardModel):
                 player.hand.cards.append(CardController())
         
         # assemble the views in a sensible heirarchy for this board
+        for lane in gameController.board.lanes:
+            for cardSlot in lane.cardSlots:
+                lane.view.children.append(cardSlot.view)
+            gameController.board.view.children.append(lane.view)
         gameController.view.children.append(gameController.board.view)
         for player in gameController.players:
             gameController.view.children.append(player.view)

@@ -17,6 +17,7 @@ class ResourceController(object):
             img = self.cache[name]
         except KeyError:
             img = self.loader(self.names[name])
+            img.convert_alpha()
             self.cache[name] = img
         return img
         
@@ -24,3 +25,4 @@ class ResourceController(object):
 class ImageController(ResourceController):
     def __init__(self):
         ResourceController.__init__(self, pygame.image.load)
+        
