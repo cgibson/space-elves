@@ -11,7 +11,7 @@ class SceneGraph (object):
 
         intersections = []
 
-        if view.inBounds(pos):
+        if view.cursorInteract and view.inBounds(pos):
             intersections.append(view)
 
             for child in view.children:
