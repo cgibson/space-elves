@@ -19,7 +19,6 @@ class CardController (Controller):
     def setVisible(self, visible):
         self.model.visible = visible
         self.view.visible = visible
-        print "card visibility: %s " % visible
         self.update()
 
 

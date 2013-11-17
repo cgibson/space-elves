@@ -15,7 +15,5 @@ class ButtonView (SpriteView):
         self.text = text
 
     def draw(self):
-
         rect = self.getAbsoluteRect()
-
         g.screen.fill(self.fillcolor, rect)

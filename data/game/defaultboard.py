@@ -68,9 +68,7 @@ class DefaultBoardSceneGraph (SceneGraph):
             for cardNumber in range(0,7):
                 player.hand.addCard(CardController(playerNum))
         
-        # Assemble the views in a sensible parent/child heirarchy for this board. 
-        gameController.view.addChild(gameController.hud.view)
-        gameController.hud.view.addChild(gameController.hud.endTurnButton.view)
+        # Assemble the views in a sensible parent/child heirarchy for this board.
         for lane in gameController.board.lanes:
             gameController.board.view.addChild(lane.view)
         gameController.view.addChild(gameController.board.view)
@@ -79,6 +77,10 @@ class DefaultBoardSceneGraph (SceneGraph):
             player.view.addChild(player.ship.view)
             player.view.addChild(player.deck.view)
             player.view.addChild(player.hand.view)
+
+        # Hud goes last
+        gameController.view.addChild(gameController.hud.view)
+        gameController.hud.view.addChild(gameController.hud.endTurnButton.view)
             #for card in player.deck.cards:
             #    player.deck.view.addChild(card.view)
             #for card in player.hand.cards:
