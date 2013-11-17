@@ -1,4 +1,6 @@
-class EventController (object):
+from controller import Controller
+
+class EventController (Controller):
     """ Responsible for coordinating communication to any listeners
     """
 
@@ -14,5 +16,6 @@ class EventController (object):
             del self.listeners[listener]
 
     def post(self, event):
+        print "POSTING [%s]" % str(event)
         for listener in self.listeners.keys():
             listener.notify(event)

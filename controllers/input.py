@@ -1,8 +1,10 @@
 import pygame
 from events.event import *
+from controller import Controller
+import global_mod as g
 
 
-class InputController (object):
+class InputController (Controller):
 
     def __init__(self):
         self.mouse_buttons = [0,0,0]
@@ -21,3 +23,6 @@ class InputController (object):
                     events.append( MouseButtonReleasedEvent(1) )
 
                 self.mouse_buttons[i] = buttons[i]
+
+        for event in events:
+            g.event_manager.post(event)

@@ -3,7 +3,6 @@ import sys, os, imp
 import pygame
 
 from controllers.event import *
-from controllers.event import *
 from controllers.input import *
 
 from data.game.defaultboard import * #HACK

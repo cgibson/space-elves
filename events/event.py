@@ -5,8 +5,8 @@ class Event (object):
     """ Superclass for all events in the game
     """
 
-    def __init__(self):
-        self.name = "Generic Event"
+    def __init__(self, name="Generic Event"):
+        self.name = name
 
     def __str__(self):
         return self.name
@@ -15,11 +15,11 @@ class Event (object):
 class MouseButtonPressedEvent (Event):
 
     def __init__(self, mouseButton):
+        super(MouseButtonPressedEvent, self).__init__("Mouse Button %s Pressed" % mouseButton)
         self.mouseButton = mouseButton
-        print "MOUSE BUTTON %s PRESSED" % mouseButton
 
 class MouseButtonReleasedEvent (Event):
 
     def __init__(self, mouseButton):
+        super(MouseButtonReleasedEvent, self).__init__("Mouse Button %s Released" % mouseButton)
         self.mouseButton = mouseButton
-        print "MOUSE BUTTON %s RELEASED" % mouseButton
