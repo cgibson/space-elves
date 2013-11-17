@@ -94,6 +94,7 @@ class View (object):
         print "SETTING SIZE"
         self.rect[2] = size.x
         self.rect[3] = size.y
+        self.update()
 
     def inBounds(self, pos):
         return ((pos.x > self.rect[0]) and

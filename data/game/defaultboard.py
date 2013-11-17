@@ -39,12 +39,9 @@ class DefaultBoardSceneGraph (SceneGraph):
         # Initialize controllers which will in turn initialize the views and models.      
         gameController = GameController()
         gameController.board = BoardController()
-        gameController.board.lanes.append(LaneController(5))
-        gameController.board.lanes.append(LaneController(5))
-        gameController.board.lanes.append(LaneController(5))
-        for lane in gameController.board.lanes:
-            for cardSlotNumber in range(0, 11):
-                lane.cardSlots.append(CardSlotController())
+        gameController.board.lanes.append(LaneController(7))
+        gameController.board.lanes.append(LaneController(7))
+        gameController.board.lanes.append(LaneController(7))
         player1 = PlayerController()
         player2 = PlayerController()
         gameController.players.append(player1)
@@ -83,14 +80,15 @@ class DefaultBoardSceneGraph (SceneGraph):
         
         # Set the positions & sizes.
         gameController.view.size = screenSize
-        gameController.players[0].hand.view.position = Position(handMargin.x, handMargin.y + handSize.y / 2)
+        gameController.players[0].hand.view.position = Position(handMargin.x, handMargin.y - handSize.y / 2)
         gameController.players[0].hand.view.size     = handSize
         gameController.players[0].ship.view.position = Position(0, 0)
-        gameController.players[1].ship.view.size     = shipSize
+        gameController.players[0].ship.view.size     = shipSize
         gameController.players[1].hand.view.size     = handSize
         gameController.players[1].hand.view.position = Position(handMargin.x, screenSize.y - handMargin.y - handSize.y/2)
-        gameController.players[1].ship.view.position = Position(0, screenSize.y - handSize.y)
+        gameController.players[1].ship.view.position = Position(0, screenSize.y - shipSize.y)
         gameController.players[1].ship.view.size     = shipSize
+        gameController.players[1].ship.view.image    = g.image_manager.ship_bottom
         gameController.board.lanes[0].view.size     = laneSize
         gameController.board.lanes[0].view.position = Position(230+laneSize.x*0, 150)
         gameController.board.lanes[1].view.size     = laneSize

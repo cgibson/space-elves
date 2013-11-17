@@ -13,7 +13,6 @@ class LaneView (View):
 
         super(LaneView, self).draw()
 
-
     def update(self):
         super(LaneView, self).update()
 
