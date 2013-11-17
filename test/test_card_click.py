@@ -1,7 +1,7 @@
 from app import *
 
-from controllers.game import *
-from controllers.card import *
+from controllers import *
+import global_mod as g
 
 class TestSceneGraph (object):
 
@@ -10,17 +10,25 @@ class TestSceneGraph (object):
 
     def initControllers(self):
 
-        gameController = GameController()
+        g.image_manager.card_slot = "data/img/card_slot.png"
+        g.image_manager.card_back = "data/img/card_back.jpg"
+        g.image_manager.card_front = "data/img/card_front.jpg"
+
+        testController = Controller()
+        testController.view = View()
+
         cardController = CardController()
-
-
+        testController.view.children.append(cardController.view)
         cardController.view.position = Position(100,100)
 
-        gameController.rect = pygame.Rect(0,0,500,500)
-        gameController.view.children.append(cardController.view)
+        #cardSlotController = CardSlotController()
+        #gameController.view.children.append(cardSlotController.view)
+        #cardSlotController.view.position = Position(300,100)
 
-        self.root = gameController.view
+        testController.rect = pygame.Rect(0,0,500,500)
+
+        self.root = testController.view
 
 
-app = App(sceneGraph=TestSceneGraph())
+app = App(sceneGraphClass=TestSceneGraph)
 app.run()

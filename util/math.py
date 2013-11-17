@@ -27,3 +27,7 @@ class Position (object):
 
     def __len__(self):
         return 2
+
+
+class Dimensions (Position):
+    pass

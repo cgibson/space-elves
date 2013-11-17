@@ -43,6 +43,11 @@ class View (EventListener):
                                 self.rect[2],
                                 self.rect[3])
 
+    @property
+    def size(self):
+        return Dimensions(self.rect[2],
+                          self.rect[3])
+
     def inBounds(self, pos):
         return ((pos.x > self.rect[0]) and
                (pos.y > self.rect[1]) and
