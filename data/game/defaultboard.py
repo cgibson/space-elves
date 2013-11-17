@@ -16,6 +16,7 @@ from views.cardslot import CardSlotView
 from views.game import GameView
 from views.card import CardView
 from views.player import PlayerView
+from views.deck import DeckView
 
 from util.math import *
 
@@ -30,15 +31,24 @@ class DefaultBoardSceneGraph (BoardModel):
         gameController.players.append(player1)
         player2 = PlayerController()
         gameController.players.append(player2)
-        player1
+        for player in gameController.players:
+            player
+        
+        # init model
+        gameController.model.players.append(PlayerModel())
+        gameController.model.players.append(PlayerModel())
         
         # init views
         gameView = GameView()
         boardView = BoardView()
-        boardView.children.append(LaneView()) # top
-        boardView.children.append(LaneView()) # mid
-        boardView.children.append(LaneView()) # bot
-        #boardView.children.append(PlayerView())
+        boardView.children.append(LaneView()) # left
+        boardView.children.append(LaneView()) # middle
+        boardView.children.append(LaneView()) # right
+        for playerModel in gameController.model.players:
+            playerView = PlayerView()
+            boardView.children.append(playerView)
+            playerView.children.append(DeckView())
+        #playerView
         #gameView.children.append(boardView)
 
         self.root = gameView
