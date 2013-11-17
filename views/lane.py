@@ -39,5 +39,5 @@ class LaneView (View):
 
                 widthDiff = self.size.x - card.size.x
 
-                card.position = Position(0.5 * widthDiff, curOffset) + self.position
+                card.position = Position(0.5 * widthDiff, curOffset)
                 curOffset += card.size.y + slotSpacing

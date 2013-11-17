@@ -8,7 +8,10 @@ class CardSlotView (SpriteView):
         self.cardView = None
 
     def draw(self):
+
+        rect = self.getAbsoluteRect()
+
         if self.cardView:
-            g.screen.fill((255,255,255), self.rect)
+            g.screen.fill((255,255,255), rect)
         else:
             super(CardSlotView, self).draw()
