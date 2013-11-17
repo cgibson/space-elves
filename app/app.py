@@ -29,7 +29,6 @@ class App (object):
         size = width, height = 1280, 720 # should be pulled from screen resolution, but this is fine for now
         black = 0, 0, 0
         g.screen = pygame.display.set_mode(size)
-        pygame.display.init()
 
         # Initialize Game Board from data directory.
         #boardsDirectory = "./data/game/"

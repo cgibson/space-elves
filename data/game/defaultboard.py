@@ -21,10 +21,10 @@ from views.game import GameView
 from views.card import CardView
 from views.player import PlayerView
 from views.deck import DeckView
-
+from util.scenegraph import SceneGraph
 from util.math import *
 import global_mod as g
-class DefaultBoardSceneGraph ():
+class DefaultBoardSceneGraph (SceneGraph):
     def __init__(self):
         #self.size = # The canvas size can be calculated from the board sprites perhaps
         
