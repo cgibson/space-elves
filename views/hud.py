@@ -2,4 +2,4 @@ from views.view import View
 
 class HUDView (View):
     def __init__(self):
-        super().__init__()
+        super(HUDView, self).__init__()

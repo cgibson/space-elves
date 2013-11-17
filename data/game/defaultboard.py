@@ -68,10 +68,10 @@ class DefaultBoardSceneGraph (SceneGraph):
             for cardNumber in range(0,7):
                 player.hand.cards.append(CardController(playerNum))
         
-        # Assemble the views in a sensible parent/child heirarchy for this board.        
+        # Assemble the views in a sensible parent/child heirarchy for this board. 
+        gameController.view.addChild(gameController.hud.view)
+        gameController.hud.view.addChild(gameController.hud.endTurnButton.view)
         for lane in gameController.board.lanes:
-            for cardSlot in lane.cardSlots:
-                lane.view.addChild(cardSlot.view)
             gameController.board.view.addChild(lane.view)
         gameController.view.addChild(gameController.board.view)
         for player in gameController.players:
@@ -94,13 +94,15 @@ class DefaultBoardSceneGraph (SceneGraph):
         gameController.players[1].hand.view.position = Position(handMargin.x, screenSize.y - handMargin.y - handSize.y/2)
         gameController.players[1].ship.view.position = Position(0, screenSize.y - shipSize.y)
         gameController.players[1].ship.view.size     = shipSize
+        gameController.board.lanes[0].view.size      = laneSize
+        gameController.board.lanes[0].view.position  = Position(230+laneSize.x*0, 150)
+        gameController.board.lanes[1].view.size      = laneSize
+        gameController.board.lanes[1].view.position  = Position(230+laneSize.x*2, 150)
+        gameController.board.lanes[2].view.size      = laneSize
+        gameController.board.lanes[2].view.position  = Position(230+laneSize.x*4, 150)
+        
         gameController.players[1].ship.view.image    = g.image_manager.ship_bottom
-        gameController.board.lanes[0].view.size     = laneSize
-        gameController.board.lanes[0].view.position = Position(230+laneSize.x*0, 150)
-        gameController.board.lanes[1].view.size     = laneSize
-        gameController.board.lanes[1].view.position = Position(230+laneSize.x*2, 150)
-        gameController.board.lanes[2].view.size     = laneSize
-        gameController.board.lanes[2].view.position = Position(230+laneSize.x*4, 150)
+        
         self.root = gameController.view
     
     def initControllers(self):
