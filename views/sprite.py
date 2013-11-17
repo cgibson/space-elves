@@ -12,9 +12,9 @@ class SpriteView (View):
         self.image = None
 
         if image:
-            self.set_image(image)
+            self.setImage(image)
 
-    def set_image(self, image):
+    def setImage(self, image):
         self.image = pygame.image.load(image)
         self.rect = self.image.get_rect()
 
