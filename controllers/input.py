@@ -1,5 +1,5 @@
 import pygame
-from events.event import *
+import events
 from controller import Controller
 import global_mod as g
 
@@ -11,18 +11,18 @@ class InputController (Controller):
 
     def update(self):
 
-        events = []
+        eventList = []
         buttons = pygame.mouse.get_pressed()
 
         for i in range(3):
             if self.mouse_buttons[i] != buttons[i]:
 
                 if buttons[i]:
-                    events.append( MouseButtonPressedEvent(1) )
+                    eventList.append( events.MouseDown(1) )
                 else:
-                    events.append( MouseButtonReleasedEvent(1) )
+                    eventList.append( events.MouseReleased(1) )
 
                 self.mouse_buttons[i] = buttons[i]
 
-        for event in events:
+        for event in eventList:
             g.event_manager.post(event)

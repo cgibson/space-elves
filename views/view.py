@@ -4,12 +4,17 @@ import pygame
 import global_mod as g
 from util.math import *
 
+
+
 class View (object):
-    
+
+    num = 0
+
     def __init__(self, rect=pygame.Rect(0,0,10,10)):
         super(View, self).__init__()
 
-        self.children = []
+        self._children = []
+
         self.parent = None
         self.fillcolor = (255,255,0)
         self.rect = rect
@@ -22,6 +27,21 @@ class View (object):
 
         return self.position
 
+    def addChild(self, child):
+        self._children.append(child)
+        self.updateAll()
+
+    def removeChild(self, child):
+
+        try:
+            idx = self._children.index(child)
+            del self._children[idx]
+
+            self.updateAll()
+        except Exception, e:
+            raise ValueError("No such child view. %s" % str(e))
+
+
 
     def draw(self):
         # For Debugging
@@ -30,7 +50,7 @@ class View (object):
         #r.move(self.getAbsolutePosition())
         #g.screen.fill(self.fillcolor, self.rect)
 
-        for child in self.children:
+        for child in self._children:
             child.draw()
 
     @property
@@ -50,8 +70,24 @@ class View (object):
         return Dimensions(self.rect[2],
                           self.rect[3])
 
+    @size.setter
+    def size(self, size):
+        print "SETTING SIZE"
+        self.rect[2] = size.x
+        self.rect[3] = size.y
+
     def inBounds(self, pos):
         return ((pos.x > self.rect[0]) and
                (pos.y > self.rect[1]) and
                (pos.x < self.rect[0] + self.rect[2]) and
                (pos.y < self.rect[1] + self.rect[3]))
+
+    def update(self):
+        pass
+
+    def updateAll(self):
+
+        self.update()
+
+        for child in self._children:
+            child.updateAll()

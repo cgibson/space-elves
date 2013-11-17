@@ -1,7 +1,8 @@
 from controllers.controller import Controller
 from views.card import CardView
-from events.event import MouseButtonPressedEvent
+import events
 from util.math import *
+import pygame
 
 class CardController (Controller):
 
@@ -13,6 +14,10 @@ class CardController (Controller):
     def notify(self, event):
         super(Controller, self).notify(event)
 
-        if isinstance(event, MouseButtonPressedEvent):
-            if self.view.inBounds(event.mousePos):
-                self.view.played = not self.view.played
+        if isinstance(event, events.MouseReleased):
+            if self.view.grabbed:
+                self.view.grabbed = False
+
+    def grab(self):
+        self.view.grabbed = True
+        self.view.grabbedPos = Position(*pygame.mouse.get_pos())

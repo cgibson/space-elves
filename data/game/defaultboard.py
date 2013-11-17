@@ -61,18 +61,18 @@ class DefaultBoardSceneGraph (SceneGraph):
         # assemble the views in a sensible heirarchy for this board
         for lane in gameController.board.lanes:
             for cardSlot in lane.cardSlots:
-                lane.view.children.append(cardSlot.view)
-            gameController.board.view.children.append(lane.view)
-        gameController.view.children.append(gameController.board.view)
+                lane.view.addChild(cardSlot.view)
+            gameController.board.view.addChild(lane.view)
+        gameController.view.addChild(gameController.board.view)
         for player in gameController.players:
-            gameController.view.children.append(player.view)
-            player.view.children.append(player.ship.view)
+            gameController.view.addChild(player.view)
+            player.view.addChild(player.ship.view)
             #player.view.children.append(player.deck.view)
-            player.view.children.append(player.hand.view)
+            player.view.addChild(player.hand.view)
             #for card in player.deck.cards:
             #    player.deck.view.append(card.view)
             for card in player.hand.cards:
-                player.hand.view.children.append(card.view)
+                player.hand.view.addChild(card.view)
         #for lane in gameController.board.lanes:
         #    lane.view.append()
             

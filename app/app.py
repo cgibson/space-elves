@@ -18,7 +18,8 @@ g.image_manager = ImageController()
 class App (object):
 
     def __init__(self, sceneGraphClass=DefaultBoardSceneGraph):
-        self.sceneGraph = sceneGraphClass()
+        self._sceneGraphClass = sceneGraphClass
+        self.sceneGraph = None
 
     def run(self):
         
@@ -34,6 +35,7 @@ class App (object):
         #boardsDirectory = "./data/game/"
         #boardDataFile = os.listdir(boardsDirectory)[0] # select the first board found for now
         #Can't get this to work: imp.load_source('data.game.defaultboard', boardsDirectory + boardDataFile)
+        self.sceneGraph = self._sceneGraphClass()
         rootController = self.sceneGraph.initControllers()
         
         # Main game loop.

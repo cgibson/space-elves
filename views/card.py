@@ -3,13 +3,13 @@
 
 from sprite import *
 from animation import *
-from events.event import *
 import global_mod as g
+from util.math import *
 
 class CardView (SpriteView):
 
     def __init__(self, pos):
-        super(CardView, self).__init__( (pos.x, pos.y, 200, 270) )
+        super(CardView, self).__init__( pygame.Rect(pos.x, pos.y, 200, 270) )
 
         self.visible = False
         self.played = False
@@ -21,18 +21,21 @@ class CardView (SpriteView):
         }
 
         self.listening = True
+        self.grabbed = False
+        self.grabbedPos = Position(0,0)
 
     def draw(self):
         if self.played:
-            g.screen.blit(g.image_manager.card_slot, (100,100,50,50))
+            g.screen.blit(g.image_manager.card_slot, self.rect)
         elif self.visible:
-            g.screen.blit(g.image_manager.card_front, (100,100,50,50))
+            g.screen.blit(g.image_manager.card_front, self.rect)
+        elif self.grabbed:
+            newPos = Position(*pygame.mouse.get_pos())
+            r = self.rect
+            r = r.move(newPos.x - self.grabbedPos.x,
+                       newPos.y - self.grabbedPos.y)
+            g.screen.blit(g.image_manager.card_front, r)
         else:
-            g.screen.blit(g.image_manager.card_back, (100,100,50,50))
+            g.screen.blit(g.image_manager.card_back, self.rect)
 
-        #super(Card, self).draw()
-
-    #def notify(self, event):
-    #    if(isinstance(event, MouseButtonPressedEvent#)):
-    #        if self.inBounds(event.mousePos):
-    #            g.event_manager.post(CardClicked(self))
+        super(CardView, self).draw()

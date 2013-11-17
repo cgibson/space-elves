@@ -3,10 +3,12 @@ from controllers.board import BoardController
 from controllers.player import PlayerController
 from views.game import GameView
 from models.game import GameModel
+import events
 
 class GameController (Controller):
 
     def __init__(self):
+        super(GameController, self).__init__()
         self.view = GameView()
         self.model = GameModel()
         self.board = None
@@ -14,5 +16,24 @@ class GameController (Controller):
         
     #def win(player?):
     #    pass
-    
-    
+
+
+    def notify(self, event):
+
+        if isinstance(event, events.MouseReleased):
+            print "Got mouse released event"
+            grabbedCard = None
+            for card in self.players[0].hand.cards:
+                if card.view.grabbed:
+                    grabbedCard = card
+                    break
+
+            if grabbedCard:
+                print "Confirmed a card is grabbed"
+                for lane in self.board.lanes:
+                    if lane.view.inBounds(event.mousePos):
+                        lane.placeCard(grabbedCard)
+                        self.players[0].hand.removeCard(grabbedCard)
+                        break
+            else:
+                print "No card grabbed"
