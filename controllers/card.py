@@ -22,8 +22,7 @@ class CardController (Controller):
         self.update()
 
 
-    def playToSlot(self, slot):
-        slot.addCard(self)
+    def setPlayed(self, slot):
         self.model.inSlot = True
         self.view.inSlot = True
         self.update()
