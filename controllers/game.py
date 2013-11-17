@@ -35,7 +35,7 @@ class GameController (Controller):
                 print "Confirmed a card is grabbed"
                 for lane in self.board.lanes:
                     if lane.view.inBounds(event.mousePos):
-                        lane.placeCard(grabbedCard)
+                        lane.placeCard(grabbedCard, 0)
                         self.players[0].hand.removeCard(grabbedCard)
                         break
             else:
@@ -45,4 +45,4 @@ class GameController (Controller):
             print "mousedown"
             if event.mouseButton == 2:
                 print "right click"
-                g.event_manager.post(events.StartTurn)
+                self.board.lanes[0].startTurn(0)

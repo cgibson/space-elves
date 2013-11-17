@@ -12,6 +12,7 @@ class CardController (Controller):
         self.view = CardView(Position(0,0))
         self.model = CardModel(playerId)
 
+
     def notify(self, event):
         super(Controller, self).notify(event)
 
@@ -33,3 +34,21 @@ class CardController (Controller):
     def grab(self):
         self.view.grabbed = True
         self.view.grabbedPos = Position(*pygame.mouse.get_pos())
+
+    #self.card is attacking the passed card
+    #apply damage and return the winning object
+    def attack(self, card):
+        if self.model.currentPower + self.model.attackBonus >= card.model.currentPower:
+            if self.model.currentPower - card.model.currentPower <= 0:
+                card.explode()
+                return None
+            card.explode()
+            return self
+        else:
+            card.model.currentPower = card.model.currentPower - (self.model.currentPower + self.model.attackBonus)
+            self.explode()
+            return card
+
+    def explode(self):
+        self.model.currentPower = 0
+        print "this card has exploded"
