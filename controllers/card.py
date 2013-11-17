@@ -29,10 +29,8 @@ class CardController (Controller):
     def attack(self, card):
         if self.model.currentPower + self.model.attackBonus >= card.model.currentPower:
             if self.model.currentPower - card.model.currentPower <= 0:
-                card.model.currentPower = 0
                 card.explode()
                 return None
-            card.model.currentPower = 0
             card.explode()
             return self
         else:
@@ -41,4 +39,5 @@ class CardController (Controller):
             return card
 
     def explode(self):
+        self.model.currentPower = 0
         print "this card has exploded"
