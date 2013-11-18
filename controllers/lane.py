@@ -26,7 +26,7 @@ class LaneController (Controller):
             #You've hit the enemy ship.
             print "you've hit the enemy ship"
             g.event_manager.post(events.ShipDamage(self, card))
-        elif slotNum == -1:
+        elif slotNum < 0:
             #You've hit the hero ship
             print "you've hit the hero ship"
             g.event_manager.post(events.ShipDamage(self, card))
@@ -73,10 +73,10 @@ class LaneController (Controller):
             self.removeCard(i[2])
             if player == 1:
                 print "moving %s to %s" %(i[2], i[2]-1)
-                self.placeCard(i[1], i[2]-1)
+                self.placeCard(i[1], i[2]-i[1].model.movement)
             else:
                 print "moving %s to %s" %(i[2], i[2]+1)
-                self.placeCard(i[1], i[2]+1)
+                self.placeCard(i[1], i[2]+i[1].model.movement)
         #for x in range(len(self.cardSlots)-1, 0, -1):
         #    if x != 0:
         #        self.cardSlots[x].card = self.cardSlots[x-1].card

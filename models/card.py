@@ -7,7 +7,7 @@ class CardModel (Model):
         self.power = 1
         self.currentPower = 0
         self.attackBonus = 0
-        self.movement = 0
+        self.movement = 1
         self.priority = 0 # lower is better
 
         self.visible = False # whether the card is visible to the player
