@@ -24,10 +24,11 @@ class DefaultBoardSceneGraph (SceneGraph):
         # Dimensions taken from https://www.dropbox.com/s/kd4u1ee5orponpn/ui-mockup3.jpg
         handMargin = Dimensions(450,0)
         screenSize = Dimensions(1280,720)
-        handSize = Dimensions(screenSize.x-handMargin.x*2, 270)
+        handSize = Dimensions(screenSize.x-handMargin.x*2, 206)
         laneSize = Dimensions(170, 420)
         shipSize = Dimensions(1280,150)
         buttonSize = Dimensions(170,50)
+        cardSize = Dimensions(136,206)
         
         # Load images.
         g.image_manager.card_back    = "data/img/card_back.jpg"
