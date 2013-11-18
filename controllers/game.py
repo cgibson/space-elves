@@ -59,10 +59,12 @@ class GameController (Controller):
             self.players[self.playersTurn].gainMana()
 
             #AI Takes Over
-            #if self.playersTurn == 0:
-            #    playLane = self.getSuggestedPlay()
-            #    self.board.lanes[playLane].placeCard(self.players[self.playersTurn].hand.cards[0], 0)
-            #    g.event_manager.post(events.ButtonEndTurn(1))
+            if self.playersTurn == 0:
+                playLane = self.getSuggestedPlay()
+                randomCard = self.players[self.playersTurn].hand.cards[0]
+                self.board.lanes[playLane].placeCard(randomCard, 0)
+                self.players[self.currentPlayer].hand.removeCard(randomCard)
+                g.event_manager.post(events.ButtonEndTurn(1))
 
         if isinstance(event, events.MouseDown):
             print "mousedown"
