@@ -5,11 +5,15 @@ from models.card import CardModel
 from util.math import *
 import pygame
 import global_mod as g
+import random
 class CardController (Controller):
 
     def __init__(self, playerId, cardPrint=None):
         if not cardPrint:
-            cardPrint = g.card_prints_manager["Space Core"]#g.card_prints_manager.randomCard()
+            if random.randint(0,1) == 1:
+                cardPrint = g.card_prints_manager["Chris Gibson"]#g.card_prints_manager.randomCard()
+            else:
+                cardPrint = g.card_prints_manager["Space Core"]
             
         super(CardController, self).__init__()
         self.view = CardView(Position(0,0),cardPrint)
