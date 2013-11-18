@@ -17,17 +17,23 @@ g.image_manager     = ImageController()
 g.deck_series_manager = DeckSeriesController()
 g.card_prints_manager = CardPrintsController()
 
+
 class App (object):
 
     def __init__(self, sceneGraphClass=DefaultBoardSceneGraph):
         self._sceneGraphClass = sceneGraphClass
         self.sceneGraph = None
 
+    def loadFonts(self):
+        g.fonts["helvetica"] = FontController("helvetica", 18)
+        g.fonts["helvetica"].color = (0,0,0)
+
     def run(self):
         
         # Initalize pygame framework.
         pygame.init()
 
+        self.loadFonts()
         # Initialize window
         size = width, height = 1280, 720 # should be pulled from screen resolution, but this is fine for now
         black = 0, 0, 0

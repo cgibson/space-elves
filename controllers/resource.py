@@ -31,7 +31,29 @@ class ResourceController(object):
 class ImageController(ResourceController):
     def __init__(self):
         super(ImageController, self).__init__(pygame.image.load)
-        
+
+class FontController(object):
+
+    def __init__(self, font, size, bold=False, italic=False):
+        self._font = pygame.font.SysFont(font, size, bold, italic)
+        self.antialias = True
+        self.color = (0,0,0)
+        self.background = None
+        self.cache = {}
+
+    def __getitem__(self, text):
+        label = self._font.render(text, self.antialias, self.color)
+        return label
+
+    def getCached(self, text):
+        try:
+            label = self.cache[text]
+        except KeyError, e:
+            label = self[text]
+            self.cache[text] = label
+
+        return label
+
 class CardPrintsController(): # Unfortunately this needs to act a bit differentally than a ResourceController for loading
     def __init__(self):
         #super(CardPrintsController, self).__init__()

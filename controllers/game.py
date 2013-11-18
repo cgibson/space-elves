@@ -44,8 +44,36 @@ class GameController (Controller):
             else:
                 print "No card grabbed"
 
+        if isinstance(event, events.StartTurn):
+            print "Starting Turn"
+            for lane in self.board.lanes:
+                lane.startTurn(self.playersTurn)
+
         if isinstance(event, events.MouseDown):
             print "mousedown"
             if event.mouseButton == 2:
                 print "right click"
-                self.board.lanes[0].startTurn(0)
+                g.event_manager.post(events.StartTurn())
+
+        # End turn is called
+        if isinstance(event, events.ButtonEndTurn):
+            print "Ending turn! YAAAY"
+            self.playersTurn += 1
+            self.playersTurn %= len(self.players)
+
+            # Since we're not networked. derp
+            self.currentPlayer = self.playersTurn
+
+            self.updateCardVisibilities()
+
+            self.view.updateAll()
+            self.update()
+
+
+    def updateCardVisibilities(self):
+        for idx, player in enumerate(self.players):
+
+            if idx == self.currentPlayer:
+                player.setVisibility(True)
+            else:
+                player.setVisibility(False)

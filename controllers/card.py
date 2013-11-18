@@ -25,6 +25,7 @@ class CardController (Controller):
     def setPlayed(self, slot):
         self.model.inSlot = True
         self.view.inSlot = True
+        self.view.position = Position(0,0)
         self.update()
 
     def grab(self):

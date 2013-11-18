@@ -15,7 +15,7 @@ class Position (object):
     def __mul__(self, scalar):
         return Position(self.x * scalar, self.y * scalar)
 
-    def __mul__(self, scalar):
+    def __div__(self, scalar):
         return Position(self.x / scalar, self.y / scalar)
 
     def __getitem__(self, item):
@@ -27,6 +27,10 @@ class Position (object):
 
     def __len__(self):
         return 2
+
+    def reset(self):
+        self.x = 0
+        self.y = 0
 
 
 class Dimensions (Position):
