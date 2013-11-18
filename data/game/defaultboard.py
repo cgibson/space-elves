@@ -56,6 +56,8 @@ class DefaultBoardSceneGraph (SceneGraph):
         gameController.hud.endTurnButton.setText("End Turn")
         gameController.hud.endTurnButton.setEventType(events.ButtonEndTurn)
 
+        gameController.results = ResultsController()
+
         player1 = PlayerController()
         player2 = PlayerController()
         gameController.players.append(player1)
@@ -104,6 +106,7 @@ class DefaultBoardSceneGraph (SceneGraph):
         gameController.view.addChild(gameController.hud.view)
         gameController.hud.view.addChild(gameController.hud.endTurnButton.view)
 
+        gameController.view.addChild(gameController.results.view)
 
             #for card in player.deck.cards:
             #    player.deck.view.addChild(card.view)

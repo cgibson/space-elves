@@ -39,6 +39,7 @@ class ImageController(ResourceController):
     def __init__(self):
         super(ImageController, self).__init__(pygame.image.load)
 
+
 class FontController(object):
 
     def __init__(self, font, size, bold=False, italic=False):
@@ -53,13 +54,40 @@ class FontController(object):
         return label
 
     def getCached(self, text):
+
+        key = text+str(self.color)
         try:
-            label = self.cache[text]
+            label = self.cache[key]
         except KeyError, e:
             label = self[text]
-            self.cache[text] = label
+            self.cache[key] = label
 
         return label
+
+    def dropShadow(self, text, offset=2, borderColor=(0,0,0), cached=False):
+        curColor = self.color
+
+        if cached:
+            label = self.getCached(text)
+            self.color = borderColor
+            dropLabel = self.getCached(text)
+        else:
+            label = self[text]
+            self.color = borderColor
+            dropLabel = self[text]
+
+        rect = label.get_rect()
+
+        img = pygame.Surface( (rect[2] + (offset * 2),
+                               rect[3] + (offset * 2)
+                              ), flags=pygame.SRCALPHA)
+
+        img.blit(dropLabel, (offset * 2, offset * 2, rect[2], rect[3]))
+        img.blit(label, (0,0,rect[2], rect[3]))
+
+        self.color = curColor
+
+        return img
 
 class CardPrintsController(): # Unfortunately this needs to act a bit differentally than a ResourceController for loading
     def __init__(self):
