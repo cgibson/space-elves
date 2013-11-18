@@ -52,6 +52,9 @@ class GameController (Controller):
             for lane in self.board.lanes:
                 lane.startTurn(self.playersTurn)
 
+            # Now the player who's turn it is draws a card
+            self.players[self.playersTurn].drawCard()
+
         if isinstance(event, events.MouseDown):
             print "mousedown"
             if event.mouseButton == 2:

@@ -66,8 +66,8 @@ class DefaultBoardSceneGraph (SceneGraph):
             player.deck = DeckController()
             player.hand = HandController(False if playerNum is 0 else True)
             player.ship = ShipController()
-            #for cardNumber in range(0,30):
-            #    player.deck.addCard(CardController(playerNum))
+            for cardNumber in range(0,30):
+                player.deck.addCard(CardController(playerNum))
             for cardNumber in range(0,7):
                 player.hand.addCard(CardController(playerNum))
 
@@ -76,6 +76,13 @@ class DefaultBoardSceneGraph (SceneGraph):
                 player.sections.append( HealthBarController(Position(0, 0),
                                                             Dimensions(150, 30),
                                                             10) )
+
+            player.mana = HealthBarController(Position(0, 0),
+                                                       Dimensions(280, 20),
+                                                       10)
+            player.mana.view.foreground = (0, 188, 255)
+            player.mana.view.background = (113, 0, 188)
+
         
         # Assemble the views in a sensible parent/child heirarchy for this board.
         for lane in gameController.board.lanes:
@@ -89,6 +96,8 @@ class DefaultBoardSceneGraph (SceneGraph):
 
             for i in range(3):
                 player.view.addChild(player.sections[i].view)
+
+            player.view.addChild(player.mana.view)
 
         # Hud goes last
         gameController.view.addChild(gameController.hud.view)
@@ -128,6 +137,9 @@ class DefaultBoardSceneGraph (SceneGraph):
         player1.sections[0].view.position            = Position(240+laneSize.x*0, 590)
         player1.sections[1].view.position            = Position(240+laneSize.x*2, 580)
         player1.sections[2].view.position            = Position(240+laneSize.x*4, 590)
+
+        player0.mana.view.position                        = Position(20, 20)
+        player1.mana.view.position                        = Position(20, 690)
 
         self.root = gameController.view
     

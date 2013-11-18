@@ -12,5 +12,11 @@ class DeckController (Controller):
 
     def addCard(self, card):
         self.cards.append(card)
-        self.view.addChild(card.view)
+        #self.view.addChild(card.view)
         self.update()
+
+    def drawCard(self):
+        if self.cards:
+            return self.cards.pop()
+        else:
+            return None
