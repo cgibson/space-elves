@@ -89,7 +89,7 @@ class GameController (Controller):
             enemyPlayer = 1
         else:
             enemyPlayer = 0
-        playInLane = self.board.getBestLane(enemyPlayer)
+        return self.board.getBestLane(enemyPlayer)
 
     def updateCardVisibilities(self):
         for idx, player in enumerate(self.players):
