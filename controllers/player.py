@@ -8,6 +8,7 @@ class PlayerController (Controller):
         super(PlayerController, self).__init__()
         self.model = PlayerModel()
         self.view  = PlayerView()
+        self.deck = None
         self.hand = None
         self.sections = []
         self.mana = None
@@ -35,3 +36,8 @@ class PlayerController (Controller):
 
     def hasEnoughMana(self, amountNeeded):
         return amountNeeded <= self.mana.model.curHealth
+
+    def drawCard(self):
+        card = self.deck.drawCard()
+        self.hand.addCard(card)
+        self.view.updateAll()
