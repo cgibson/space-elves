@@ -28,7 +28,7 @@ class PlayerController (Controller):
 
     def takeDamage(self, section, damage):
         self.sections[section].takeDamage(damage)
-        if self.sections[section].model.currHealth <= 0:
+        if self.sections[section].model.curHealth <= 0:
             g.event_manager.post(events.GameOver(self))
 
     def expendMana(self, amount):

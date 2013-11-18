@@ -21,6 +21,15 @@ class LaneController (Controller):
     def laneLength(self):
         return len(self.cardSlots)
 
+    def sumPower(self, player):
+        totalPower = 0
+        for x in range(0, len(self.cardSlots), 1):
+            if self.cardSlots[x].isOccupied():
+                if self.cardSlots[x].card.model.ownerId == player:
+                    totalPower += self.cardSlots[x].card.model.power
+        return totalPower
+
+
     def placeCard(self, card, slotNum):
         if slotNum > len(self.cardSlots) - 1:
             #You've hit the enemy ship.

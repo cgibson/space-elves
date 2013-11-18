@@ -84,6 +84,12 @@ class GameController (Controller):
                 damagedPlayer = 1
             self.players[damagedPlayer].takeDamage(section, event.card.model.power + event.card.model.attackBonus)
 
+    def getSuggestedPlay(self):
+        if self.playersTurn == 0:
+            enemyPlayer = 1
+        else:
+            enemyPlayer = 0
+        playInLane = self.board.getBestLane(enemyPlayer)
 
     def updateCardVisibilities(self):
         for idx, player in enumerate(self.players):
