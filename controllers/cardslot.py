@@ -12,11 +12,17 @@ class CardSlotController (Controller):
     def addCard(self, card):
 
         # TODO: Check to see if there are other cards in the slot already
+        if card == None:
+            self.removeCard()
+        else:
+            self.card = card
+            self.card.release()
+            self.card.setPlayed(True)
+            self.view.setChildren([card.view])
 
-        self.card = card
-        self.card.release()
-        self.card.setPlayed(True)
-        self.view.setChildren([card.view])
+    def removeCard(self):
+        self.card = None
+        self.view.setChildren([])
         
     def isOccupied(self):
         return (self.card != None)

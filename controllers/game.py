@@ -39,7 +39,7 @@ class GameController (Controller):
                         if self.playersTurn == 0:
                             lane.placeCard(grabbedCard, 0)
                         else:
-                            lane.placeCard(grabbedCard, -1)
+                            lane.placeCard(grabbedCard, lane.laneLength()-1)
                         self.players[self.currentPlayer].hand.removeCard(grabbedCard)
                         break
                 else:
@@ -48,7 +48,7 @@ class GameController (Controller):
                 print "No card grabbed"
 
         if isinstance(event, events.StartTurn):
-            print "Starting Turn"
+            print "Starting Player %s Turn" %self.playersTurn
             for lane in self.board.lanes:
                 lane.startTurn(self.playersTurn)
 

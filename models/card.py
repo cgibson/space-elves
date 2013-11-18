@@ -4,7 +4,7 @@ class CardModel (Model):
 
     def __init__(self, ownerId):
         super(CardModel, self).__init__()
-        self.power = 0
+        self.power = 1
         self.currentPower = 0
         self.attackBonus = 0
         self.movement = 0

@@ -34,7 +34,10 @@ class CardView (SpriteView):
                              newPos.y - self.grabbedPos.y)
 
         if self.inSlot:
-            g.screen.blit(g.image_manager.card_slot, rect)
+            rect[2] = 150
+            rect[3] = 50
+            g.screen.fill( (255,255,255), rect)
+            #g.screen.blit(g.image_manager.card_slot, rect)
         elif self.visible:
             g.screen.blit(g.image_manager.card_front, rect)
         else:
