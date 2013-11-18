@@ -80,6 +80,7 @@ class CardPrintsController(): # Unfortunately this needs to act a bit differenta
         card.name = cardData["name"]
         card.power = cardData["power"]
         card.speed = cardData["speed"]
+        card.manaCost = cardData["manaCost"]
         return card
     
     def randomCard(self):

@@ -5,6 +5,7 @@
     "subtype" : "fighter",    
    "speed" : 1,
    "power" : 3,
+   "manaCost" : 1,
    "lifetime" : -1
  },
  {
