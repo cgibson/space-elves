@@ -43,17 +43,28 @@ class CardController (Controller):
     #self.card is attacking the passed card
     #apply damage and return the winning object
     def attack(self, card):
-        if self.model.currentPower + self.model.attackBonus >= card.model.currentPower:
-            if self.model.currentPower - card.model.currentPower <= 0:
-                card.explode()
-                return None
-            card.explode()
+        if self.model.currentPower == card.model.currentPower:
+            return None
+        elif self.model.currentPower > card.model.currentPower:
+            self.model.currentPower -= card.model.currentPower
+            self.view.power = str(self.model.currentPower)
             return self
-        else:
-            card.model.currentPower = card.model.currentPower - (self.model.currentPower + self.model.attackBonus)
-            card.view.power = str(card.model.currentPower)            
-            self.explode()
+        elif self.model.currentPower < card.model.currentPower:
+            card.model.currentPower -= self.model.currentPower
+            card.view.power = str(card.model.currentPower)
             return card
+
+        #    if self.model.currentPower - card.model.currentPower <= 0:
+        #        card.explode()
+        #        return None
+        #    self.model.currentPower = self.model.currentPower - card.model.currentPower
+        #    card.explode()
+        #    return self
+        #else:
+        #    card.model.currentPower = card.model.currentPower - (self.model.currentPower + self.model.attackBonus)
+        #    card.view.power = str(card.model.currentPower)
+        #    self.explode()
+        #    return card
 
     def explode(self):
         self.model.currentPower = 0
