@@ -39,13 +39,20 @@ class DefaultBoardSceneGraph (SceneGraph):
         shipSize = Dimensions(1280,150)
         buttonSize = Dimensions(170,50)
         
-        # load images
+        # Load images.
         g.image_manager.card_back    = "data/img/card_back.jpg"
         g.image_manager.card_front   = "data/img/card_front.jpg"
         g.image_manager.card_slot    = "data/img/card_slot.png"
         g.image_manager.ship_top     = "data/img/board_top.png"
         g.image_manager.ship_bottom  = "data/img/board_bottom.png"
         g.image_manager.board_back   = "data/img/board_background.png"
+        
+        # Load card types & decks.
+        g.deck_series_manager.cadet_deck  = "data/cards/deck_cadets.json"
+        g.card_prints_manager.loadCardPrints("data/cards/attack.json")
+        deckExample = g.deck_series_manager.cadet_deck[g.deck_series_manager.cadet_deck.keys()[0]]
+        exampleCardName = deckExample[0]
+        exampleCard = g.card_prints_manager[exampleCardName]
         
         # Initialize controllers which will in turn initialize the views and models.      
         gameController = GameController()

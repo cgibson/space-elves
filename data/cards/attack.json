@@ -1,0 +1,20 @@
+[
+ {   
+    "name" : "Space Core",
+    "type" : "attack",
+    "subtype" : "fighter",    
+   "speed" : 1,
+   "power" : 3,
+   "lifetime" : -1
+ },
+ {
+    "name" : "Example Modifier Card",
+    "type" : "modifier",
+    "subtype" : "armor",
+    "modifiers" : {
+        "ship_armor"   : 1,
+        "attack_speed" : 0,
+        "global" : false
+     }
+  }
+]
