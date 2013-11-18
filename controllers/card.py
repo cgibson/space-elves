@@ -51,6 +51,7 @@ class CardController (Controller):
             return self
         else:
             card.model.currentPower = card.model.currentPower - (self.model.currentPower + self.model.attackBonus)
+            card.view.power = str(card.model.currentPower)            
             self.explode()
             return card
 
