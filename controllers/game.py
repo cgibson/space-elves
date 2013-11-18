@@ -71,6 +71,7 @@ class GameController (Controller):
 
             self.view.updateAll()
             self.update()
+            g.event_manager.post(events.StartTurn())
 
 
     def updateCardVisibilities(self):
