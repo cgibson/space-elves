@@ -80,12 +80,17 @@ class LaneController (Controller):
         while not processQueue.empty():
             i = processQueue.get()
             self.removeCard(i[2])
+            i[1].model.currentMovement = i[1].model.movement
             if player == 1:
                 print "moving %s to %s" %(i[2], i[2]-1)
-                self.placeCard(i[1], i[2]-i[1].model.movement)
+                while i[1].model.currentMovement > 0:
+                    self.placeCard(i[1], i[2]-1)
+                    i[1].model.currentMovement -= 1
             else:
                 print "moving %s to %s" %(i[2], i[2]+1)
-                self.placeCard(i[1], i[2]+i[1].model.movement)
+                while i[1].model.currentMovement > 0:
+                    self.placeCard(i[1], i[2]+1)
+                    i[1].model.currentMovement -= 1
         #for x in range(len(self.cardSlots)-1, 0, -1):
         #    if x != 0:
         #        self.cardSlots[x].card = self.cardSlots[x-1].card

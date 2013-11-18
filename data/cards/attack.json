@@ -6,7 +6,7 @@
     "speed" : 1,
     "power" : 3,
     "lifetime" : -1,
-    "cost" : 1
+    "cost" : 3
  },
  {
     "name" : "Chris Gibson",
@@ -15,7 +15,7 @@
     "speed" : 2,
     "power" : 1,
     "lifetime" : -1,
-    "cost" : 1
+    "cost" : 2
  },
  {
     "name" : "Example Modifier Card",
