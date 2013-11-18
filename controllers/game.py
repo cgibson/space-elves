@@ -62,8 +62,11 @@ class GameController (Controller):
             if self.playersTurn == 0:
                 playLane = self.getSuggestedPlay()
                 randomCard = self.players[self.playersTurn].hand.cards[0]
-                self.board.lanes[playLane].placeCard(randomCard, 0)
-                self.players[self.currentPlayer].hand.removeCard(randomCard)
+                if (self.players[self.currentPlayer].hasEnoughMana(randomCard.model.manaCost)):
+                    self.players[self.currentPlayer].expendMana(randomCard.model.manaCost)   
+                    self.board.lanes[playLane].placeCard(randomCard, 0)
+                    self.players[self.currentPlayer].hand.removeCard(randomCard)
+                
                 g.event_manager.post(events.ButtonEndTurn(1))
 
         if isinstance(event, events.MouseDown):
