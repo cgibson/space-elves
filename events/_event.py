@@ -19,3 +19,8 @@ class StartTurn (Event):
     def __init__(self):
         super(StartTurn, self).__init__("Start Turn")
 
+class GameOver (Event):
+
+    def __init__(self, player):
+        super(GameOver, self).__init__("Game Over")
+        self.player = player

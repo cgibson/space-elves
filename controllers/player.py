@@ -2,6 +2,7 @@ from controllers.controller import Controller
 import events
 from models.player import PlayerModel
 from views.player import PlayerView
+import global_mod as g
 
 class PlayerController (Controller):
     def __init__(self):
@@ -27,6 +28,8 @@ class PlayerController (Controller):
 
     def takeDamage(self, section, damage):
         self.sections[section].takeDamage(damage)
+        if self.sections[section].model.currHealth <= 0:
+            g.event_manager.post(events.GameOver(self))
 
     def expendMana(self, amount):
         if amount > self.mana.model.curHealth:
