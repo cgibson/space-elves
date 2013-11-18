@@ -9,7 +9,7 @@ class LaneView (View):
         self.fillcolor = (0,100,255)
 
     def draw(self):
-        g.screen.fill(self.fillcolor, self.rect)
+        #g.screen.fill(self.fillcolor, self.rect)
 
         super(LaneView, self).draw()
 

@@ -12,7 +12,7 @@ class HandView (View):
         self.update()
 
     def draw(self):
-        g.screen.fill(self.fillcolor, self.rect)
+        #g.screen.fill(self.fillcolor, self.rect)
 
         super(HandView, self).draw()
 

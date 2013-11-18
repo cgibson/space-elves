@@ -11,3 +11,5 @@ from lane import *
 from player import *
 from resource import *
 from button import *
+from healthbar import *
+from ship import *
