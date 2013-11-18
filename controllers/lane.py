@@ -19,6 +19,8 @@ class LaneController (Controller):
             self.view.addChild(slot.view)
 
     def placeCard(self, card, slotNum):
+        if slotNum == -1:
+            slotNum = len(self.cardSlots)-1
         if slotNum > len(self.cardSlots) - 1:
             #You've hit the enemy ship.
             g.event_manager.post(events.ShipDamage(self, card))
@@ -31,7 +33,10 @@ class LaneController (Controller):
                 print self.cardSlots[slotNum].card
                 if card.model.ownerId == self.cardSlots[slotNum].card.model.ownerId:
                     print "allied conflict occured, bounce!"
-                    return self.placeCard(card, slotNum + 1)
+                    if card.model.ownerId == 1:
+                        return self.placeCard(card, slotNum - 1)
+                    else:
+                        return self.placeCard(card, slotNum + 1)
                 else:
                     print "enemy conflict occured, attack!"
                     card = card.attack(self.cardSlots[slotNum])
