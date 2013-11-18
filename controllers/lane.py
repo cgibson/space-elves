@@ -54,14 +54,14 @@ class LaneController (Controller):
         #create collection of cards in the current lane
         processQueue = Queue.Queue()
         for priorityRange in range(0, 3, 1):
-            if player == 1:
+            if player == 0:
                 for x in range(len(self.cardSlots) - 1, -1 , -1):
                     if self.cardSlots[x].isOccupied():
                         if self.cardSlots[x].card.model.ownerId == player:
                             if self.cardSlots[x].card.model.priority == priorityRange:
                                 processQueue.put((self.cardSlots[x].card.model.priority, self.cardSlots[x].card, x)) #stores the priority, the card controller, and the index to the slot of the lane
             else:
-                for x in range(0, len(self.cardSlots) - 1, 1):
+                for x in range(0, len(self.cardSlots), 1):
                     if self.cardSlots[x].isOccupied():
                         if self.cardSlots[x].card.model.ownerId == player:
                             if self.cardSlots[x].card.model.priority == priorityRange:
