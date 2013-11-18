@@ -52,6 +52,9 @@ class GameController (Controller):
             for lane in self.board.lanes:
                 lane.startTurn(self.playersTurn)
 
+            # Now the player who's turn it is draws a card
+            self.players[self.playersTurn].drawCard()
+
         if isinstance(event, events.MouseDown):
             print "mousedown"
             if event.mouseButton == 2:
@@ -72,6 +75,14 @@ class GameController (Controller):
             self.view.updateAll()
             self.update()
             g.event_manager.post(events.StartTurn())
+
+        if isinstance(event, events.ShipDamage):
+            section = self.board.lanes.index(event.lane)
+            if event.card.model.ownerId == 1:
+                damagedPlayer = 0
+            if event.card.model.ownerId == 0:
+                damagedPlayer = 1
+            self.players[damagedPlayer].takeDamage(section, event.card.model.power + event.card.model.attackBonus)
 
 
     def updateCardVisibilities(self):
