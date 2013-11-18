@@ -35,7 +35,7 @@ class HealthBarController (Controller):
             self.view.curHealth = 0
 
             # Game over man, Game over!
-            g.event_manager.post(events.ShipSectionDestroyed())
+            g.event_manager.post(events.ShipHullBreached())
         else:
             self.model.curHealth -= damage
             self.view.curHealth -= damage
