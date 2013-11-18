@@ -10,6 +10,7 @@ class PlayerController (Controller):
         self.view  = PlayerView()
         self.hand = None
         self.sections = []
+        self.mana = None
         self.resource = 0
 
     def notify(self, event):
@@ -25,3 +26,12 @@ class PlayerController (Controller):
 
     def takeDamage(self, section, damage):
         self.sections[section].takeDamage(damage)
+
+    def expendMana(self, amount):
+        if amount > self.mana.model.curHealth:
+            raise ValueError("Too little mana!")
+
+        self.mana.takeDamage(amount)
+
+    def hasEnoughMana(self, amountNeeded):
+        return amountNeeded <= self.mana.model.curHealth

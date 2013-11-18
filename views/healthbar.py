@@ -25,14 +25,15 @@ class HealthBarView (SpriteView):
 
         percent = float(self.curHealth) / float(self.maxHealth)
 
-        healthRect = rect
-        healthRect[2] *= percent
-
-        g.screen.fill(self.foreground, rect)
-
         label = g.fonts[self.fontType].getCached("%s/%s" % (self.curHealth, self.maxHealth))
         labelRect = label.get_rect()
 
         centerRect = util.centerRect(labelRect, rect)
+
+        healthRect = rect
+        healthRect[2] *= percent
+
+        g.screen.fill(self.foreground, healthRect)
+
 
         g.screen.blit(label,centerRect)
