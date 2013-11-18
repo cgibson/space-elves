@@ -3,6 +3,7 @@ from views.results import *
 from controllers.controller import *
 
 from views import *
+import events
 
 class ResultsController (Controller):
     

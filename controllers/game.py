@@ -84,6 +84,9 @@ class GameController (Controller):
                 damagedPlayer = 1
             self.players[damagedPlayer].takeDamage(section, event.card.model.power + event.card.model.attackBonus)
 
+        if isinstance(event, events.GameOver):
+            self.results.display(not event.player)
+
     def getSuggestedPlay(self):
         if self.playersTurn == 0:
             enemyPlayer = 1
