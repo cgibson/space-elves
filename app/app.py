@@ -11,9 +11,11 @@ from data.game.defaultboard import * #HACK
 # Initialization
 import global_mod as g
 
-g.event_manager = EventController()
-g.input_manager = InputController()
-g.image_manager = ImageController()
+g.event_manager     = EventController()
+g.input_manager     = InputController()
+g.image_manager     = ImageController()
+g.deck_series_manager = DeckSeriesController()
+g.card_prints_manager = CardPrintsController()
 
 class App (object):
 
