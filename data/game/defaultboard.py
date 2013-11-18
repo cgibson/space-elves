@@ -1,17 +1,7 @@
 ### We use python files as data files. This will instantiate a default set of views 
 ### for the game using constructors. This way we don't have to write any file format or parsers
 ### or even interpret standard formats.
-from controllers.board import BoardController
-from controllers.lane import LaneController
-from controllers.cardslot import CardSlotController
-from controllers.game import GameController
-from controllers.player import PlayerController
-from controllers.deck import DeckController
-from controllers.hand import HandController
-from controllers.card import CardController
-from controllers.ship import ShipController
-from controllers.hud import HUDController
-from controllers.button import ButtonController
+from controllers import *
 import events
 
 from models.board import BoardModel
@@ -80,6 +70,12 @@ class DefaultBoardSceneGraph (SceneGraph):
             #    player.deck.addCard(CardController(playerNum))
             for cardNumber in range(0,7):
                 player.hand.addCard(CardController(playerNum))
+
+            player.sections = []
+            for i in range(3):
+                player.sections.append( HealthBarController(Position(0, 0),
+                                                            Dimensions(150, 30),
+                                                            10) )
         
         # Assemble the views in a sensible parent/child heirarchy for this board.
         for lane in gameController.board.lanes:
@@ -91,9 +87,14 @@ class DefaultBoardSceneGraph (SceneGraph):
             player.view.addChild(player.deck.view)
             player.view.addChild(player.hand.view)
 
+            for i in range(3):
+                player.view.addChild(player.sections[i].view)
+
         # Hud goes last
         gameController.view.addChild(gameController.hud.view)
         gameController.hud.view.addChild(gameController.hud.endTurnButton.view)
+
+
             #for card in player.deck.cards:
             #    player.deck.view.addChild(card.view)
             #for card in player.hand.cards:
@@ -117,7 +118,17 @@ class DefaultBoardSceneGraph (SceneGraph):
         gameController.board.lanes[2].view.position  = Position(230+laneSize.x*4, 150)
         
         gameController.players[1].ship.view.image    = g.image_manager.ship_bottom
-        
+
+        player0 = gameController.players[0]
+        player0.sections[0].view.position            = Position(240+laneSize.x*0, 100)
+        player0.sections[1].view.position            = Position(240+laneSize.x*2, 110)
+        player0.sections[2].view.position            = Position(240+laneSize.x*4, 100)
+
+        player1 = gameController.players[1]
+        player1.sections[0].view.position            = Position(240+laneSize.x*0, 590)
+        player1.sections[1].view.position            = Position(240+laneSize.x*2, 580)
+        player1.sections[2].view.position            = Position(240+laneSize.x*4, 590)
+
         self.root = gameController.view
     
     def initControllers(self):

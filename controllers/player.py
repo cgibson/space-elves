@@ -9,6 +9,7 @@ class PlayerController (Controller):
         self.model = PlayerModel()
         self.view  = PlayerView()
         self.hand = None
+        self.sections = []
         self.resource = 0
 
     def notify(self, event):
@@ -21,3 +22,6 @@ class PlayerController (Controller):
     def setVisibility(self, visible):
         self.hand.setVisibility(visible)
         self.view.updateAll()
+
+    def takeDamage(self, section, damage):
+        self.sections[section].takeDamage(damage)

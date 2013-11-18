@@ -30,7 +30,6 @@ class CardController (Controller):
         self.update()
 
     def grab(self):
-        print "CARD IS GRABBED"
         self.view.grabbed = True
         self.view.grabbedPos = Position(*pygame.mouse.get_pos())
 
