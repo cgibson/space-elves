@@ -25,7 +25,6 @@ class GameController (Controller):
     def notify(self, event):
 
         if isinstance(event, events.MouseReleased):
-            print "Got mouse released event"
             grabbedCard = None
             for card in self.players[self.currentPlayer].hand.cards:
                 if card.view.grabbed:
@@ -33,9 +32,14 @@ class GameController (Controller):
                     break
 
             if grabbedCard:
-                print "Confirmed a card is grabbed"
-                for lane in self.board.lanes:
+                for laneIdx, lane in enumerate(self.board.lanes, 0):
                     if lane.view.inBounds(event.mousePos):
+
+                        if not self.players[self.playersTurn].hasEnoughMana(grabbedCard.model.manaCost):
+                            grabbedCard.release()
+                            break
+                        self.players[self.playersTurn].expendMana(grabbedCard.model.manaCost)
+
                         if self.playersTurn == 0:
                             lane.placeCard(grabbedCard, 0)
                         else:
@@ -44,8 +48,6 @@ class GameController (Controller):
                         break
                 else:
                     card.release()
-            else:
-                print "No card grabbed"
 
         if isinstance(event, events.StartTurn):
             print "Starting Player %s Turn" %self.playersTurn
@@ -54,6 +56,13 @@ class GameController (Controller):
 
             # Now the player who's turn it is draws a card
             self.players[self.playersTurn].drawCard()
+            self.players[self.playersTurn].gainMana()
+
+            #AI Takes Over
+            #if self.playersTurn == 0:
+            #    playLane = self.getSuggestedPlay()
+            #    self.board.lanes[playLane].placeCard(self.players[self.playersTurn].hand.cards[0], 0)
+            #    g.event_manager.post(events.ButtonEndTurn(1))
 
         if isinstance(event, events.MouseDown):
             print "mousedown"
@@ -85,7 +94,7 @@ class GameController (Controller):
             self.players[damagedPlayer].takeDamage(section, event.card.model.power + event.card.model.attackBonus)
 
         if isinstance(event, events.GameOver):
-            self.results.display(not event.player)
+            self.results.display(not self.players.index(event.player))
 
     def getSuggestedPlay(self):
         if self.playersTurn == 0:

@@ -85,6 +85,7 @@ class DefaultBoardSceneGraph (SceneGraph):
                                                        10)
             player.mana.view.foreground = (0, 188, 255)
             player.mana.view.background = (113, 0, 188)
+            player.mana.setHealth(2)
 
         
         # Assemble the views in a sensible parent/child heirarchy for this board.

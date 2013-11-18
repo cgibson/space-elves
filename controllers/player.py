@@ -36,10 +36,16 @@ class PlayerController (Controller):
         if amount > self.mana.model.curHealth:
             raise ValueError("Too little mana!")
 
-        self.mana.takeDamage(amount)
+        self.mana.take(amount)
 
     def hasEnoughMana(self, amountNeeded):
         return amountNeeded <= self.mana.model.curHealth
+
+    def gainMana(self):
+        if self.mana.model.curHealth >= self.mana.model.maxHealth:
+            self.mana.gain(1)
+        else:
+            self.mana.gain(2)
 
     def drawCard(self):
         card = self.deck.drawCard()

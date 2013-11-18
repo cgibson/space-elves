@@ -39,3 +39,10 @@ class HealthBarController (Controller):
         else:
             self.model.curHealth -= damage
             self.view.curHealth -= damage
+
+    def gain(self, amount):
+        self.model.curHealth += amount
+        self.view.curHealth += amount
+
+    def take(self, amount):
+        self.gain(amount * -1)
