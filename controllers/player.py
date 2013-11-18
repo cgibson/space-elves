@@ -17,3 +17,7 @@ class PlayerController (Controller):
         if isinstance(event, events.StartTurn):
             self.resource += 2
             #TODO Check if it is the active player
+
+    def setVisibility(self, visible):
+        self.hand.setVisibility(visible)
+        self.view.updateAll()

@@ -54,3 +54,26 @@ class GameController (Controller):
             if event.mouseButton == 2:
                 print "right click"
                 g.event_manager.post(events.StartTurn())
+
+        # End turn is called
+        if isinstance(event, events.ButtonEndTurn):
+            print "Ending turn! YAAAY"
+            self.playersTurn += 1
+            self.playersTurn %= len(self.players)
+
+            # Since we're not networked. derp
+            self.currentPlayer = self.playersTurn
+
+            self.updateCardVisibilities()
+
+            self.view.updateAll()
+            self.update()
+
+
+    def updateCardVisibilities(self):
+        for idx, player in enumerate(self.players):
+
+            if idx == self.currentPlayer:
+                player.setVisibility(True)
+            else:
+                player.setVisibility(False)
