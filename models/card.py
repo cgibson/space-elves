@@ -16,6 +16,7 @@ class CardModel (Model):
         self.inSlot = False
         self.currentMovement = self.movement
         self.priority = 0 # lower is better
+        self.manaCost = cardPrint.manaCost
         
         
 class CardPrint(object): #instantiated by the CardPrintManager
