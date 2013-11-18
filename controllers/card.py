@@ -4,14 +4,16 @@ import events
 from models.card import CardModel
 from util.math import *
 import pygame
-
+import global_mod as g
 class CardController (Controller):
 
-    def __init__(self, playerId):
+    def __init__(self, playerId, cardPrint=None):
+        if not cardPrint:
+            cardPrint = g.card_prints_manager["Space Core"]#g.card_prints_manager.randomCard()
+            
         super(CardController, self).__init__()
-        self.view = CardView(Position(0,0))
-        self.model = CardModel(playerId)
-
+        self.view = CardView(Position(0,0),cardPrint)
+        self.model = CardModel(playerId, cardPrint)
 
     def notify(self, event):
         super(Controller, self).notify(event)
@@ -20,7 +22,6 @@ class CardController (Controller):
         self.model.visible = visible
         self.view.visible = visible
         self.update()
-
 
     def setPlayed(self, slot):
         self.model.inSlot = True

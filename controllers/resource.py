@@ -1,7 +1,9 @@
 import pygame
 import weakref
 import json
-from models.card import CardModel
+import random
+random.seed()
+from models.card import CardPrint
  
 class ResourceController(object):
     def __init__(self, loader):
@@ -26,7 +28,12 @@ class ResourceController(object):
         self.__setattr__(name,value)
     
     def __getitem__(self, name):
-        self.__getattr__(name)
+        try:
+            dataObj = self.cache[name]
+        except KeyError, e:
+            dataObj = self.loader(name)
+            self.cache[name] = dataObj
+        return dataObj
     
 class ImageController(ResourceController):
     def __init__(self):
@@ -69,11 +76,14 @@ class CardPrintsController(): # Unfortunately this needs to act a bit differenta
 
     def __getitem__(self, name):
         cardData = self.cache[name]
-        card = CardModel(-1)
+        card = CardPrint()
         card.name = cardData["name"]
         card.power = cardData["power"]
         card.speed = cardData["speed"]
         return card
+    
+    def randomCard(self):
+        return self.cache[random.randint(0,len(self.cache)-1)]
     
 class DeckSeriesController(ResourceController):
     def __init__(self):
