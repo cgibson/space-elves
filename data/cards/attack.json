@@ -5,7 +5,8 @@
     "subtype" : "fighter",    
     "speed" : 1,
     "power" : 3,
-    "lifetime" : -1
+    "lifetime" : -1,
+    "cost" : 1
  },
  {
     "name" : "Chris Gibson",
@@ -13,7 +14,8 @@
     "subtype" : "fighter",
     "speed" : 2,
     "power" : 1,
-    "lifetime" : -1
+    "lifetime" : -1,
+    "cost" : 1
  },
  {
     "name" : "Example Modifier Card",
@@ -23,6 +25,7 @@
         "ship_armor"   : 1,
         "attack_speed" : 0,
         "global" : false
-     }
+     },
+     "cost" : 1
  }
 ]
