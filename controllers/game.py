@@ -54,6 +54,7 @@ class GameController (Controller):
 
             # Now the player who's turn it is draws a card
             self.players[self.playersTurn].drawCard()
+            self.players[self.playersTurn].gainMana()
 
         if isinstance(event, events.MouseDown):
             print "mousedown"
@@ -85,7 +86,7 @@ class GameController (Controller):
             self.players[damagedPlayer].takeDamage(section, event.card.model.power + event.card.model.attackBonus)
 
         if isinstance(event, events.GameOver):
-            self.results.display(not event.player)
+            self.results.display(not self.players.index(event.player))
 
     def getSuggestedPlay(self):
         if self.playersTurn == 0:
