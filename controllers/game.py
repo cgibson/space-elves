@@ -73,6 +73,14 @@ class GameController (Controller):
             self.update()
             g.event_manager.post(events.StartTurn())
 
+        if isinstance(event, events.ShipDamage):
+            section = self.board.lanes.index(event.lane)
+            if event.card.model.ownerId == 1:
+                damagedPlayer = 0
+            if event.card.model.ownerId == 0:
+                damagedPlayer = 1
+            self.players[damagedPlayer].takeDamage(section, event.card.model.power + event.card.model.attackBonus)
+
 
     def updateCardVisibilities(self):
         for idx, player in enumerate(self.players):
