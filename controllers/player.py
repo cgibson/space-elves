@@ -2,6 +2,7 @@ from controllers.controller import Controller
 import events
 from models.player import PlayerModel
 from views.player import PlayerView
+import enums as e
 import global_mod as g
 
 class PlayerController (Controller):
