@@ -28,6 +28,9 @@ class App (object):
         g.fonts["helvetica"] = FontController("helvetica", 18)
         g.fonts["helvetica"].color = (0,0,0)
 
+        g.fonts["helvetica36"] = FontController("helvetica", 36)
+        g.fonts["helvetica36"].color = (255,255,255)
+        
         g.fonts["helvetica72"] = FontController("helvetica", 72)
         g.fonts["helvetica72"].color = (255,255,255)
 

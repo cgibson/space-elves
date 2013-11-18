@@ -16,7 +16,7 @@ class CardView (SpriteView):
         self.visible = False
         self.inSlot = False
         self.status = STATIC
-        self.fontType = "helvetica"
+        self.fontType = "helvetica36"
         self.effects = {
             "hover" : False,
             "highlight" : False,
@@ -43,7 +43,7 @@ class CardView (SpriteView):
         self.movementColor = (0,255,0)
         self.manaColor = (0,0,255)
         self.powerColor = (255,0,0)
-        self.minimisedIconSize = Dimensions(35,35)
+        self.minimisedIconSize = Dimensions(30,30)
         self.iconSize = Dimensions(50,50)
         
         # load images
@@ -68,14 +68,14 @@ class CardView (SpriteView):
             g.screen.blit(g.image_manager[self.cardMinimisedImageName], rect)
             
             # Power icon.
-            g.screen.blit(g.image_manager.power_icon_min, Rect(rect.left - self.minimisedIconSize.x, rect.bottom, self.minimisedIconSize.x, self.minimisedIconSize.y))
+            g.screen.blit(g.image_manager.power_icon_min, Rect(rect.left - self.minimisedIconSize.x, rect.bottom - self.minimisedIconSize.y, self.minimisedIconSize.x, self.minimisedIconSize.y))
             g.fonts[self.fontType].color = self.powerColor
-            g.screen.blit(g.fonts[self.fontType].getCached(self.power), Rect(rect.left, rect.top, self.minimisedIconSize.x, self.minimisedIconSize.y))
+            g.screen.blit(g.fonts[self.fontType].dropShadow(self.power, cached=True), Rect(rect.left-self.minimisedIconSize.x, rect.top, self.minimisedIconSize.x, self.minimisedIconSize.y))
             
             # Movement icon.
-            g.screen.blit(g.image_manager.move_icon_min, Rect(rect.right, rect.bottom, self.minimisedIconSize.x, self.minimisedIconSize.y))
+            g.screen.blit(g.image_manager.move_icon_min, Rect(rect.right, rect.bottom - self.minimisedIconSize.y, self.minimisedIconSize.x, self.minimisedIconSize.y))
             g.fonts[self.fontType].color = self.movementColor
-            g.screen.blit(g.fonts[self.fontType].getCached(self.movement), Rect(rect.right, rect.top, self.minimisedIconSize.x, self.minimisedIconSize.y))
+            g.screen.blit(g.fonts[self.fontType].dropShadow(self.movement, cached=True), Rect(rect.right, rect.top, self.minimisedIconSize.x, self.minimisedIconSize.y))
             
             # Player color outline.
             #g.screen.fill( (255,255,255), rect)
@@ -84,25 +84,25 @@ class CardView (SpriteView):
             # Draw large version
             g.screen.blit(g.image_manager.card_front, rect)
             g.screen.blit(g.image_manager[self.cardImageName], rect)
-            g.screen.blit(g.fonts[self.fontType].getCached(self.title), rect)
+            #g.screen.blit(g.fonts[self.fontType].dropShadow(self.title, borderColor=(255,255,255), cached=True), Rect(rect.midleft[0], rect.midleft[1], rect.width, rect.height))
             
             # Power icon.
-            iconRect = Rect(rect.right - self.iconSize.x, rect.top + self.iconSize.y, self.iconSize.x, self.iconSize.y)
+            iconRect = Rect(rect.right - self.iconSize.x/2, rect.top + self.iconSize.y, self.iconSize.x, self.iconSize.y)
             g.screen.blit(self.powerIcon, iconRect)
             g.fonts[self.fontType].color = self.powerColor
-            g.screen.blit(g.fonts[self.fontType].getCached(self.power), Rect(rect.right, rect.top + self.iconSize.y, self.iconSize.x, self.iconSize.y))
+            g.screen.blit(g.fonts[self.fontType].dropShadow(self.power, cached=True), Rect(rect.right - self.iconSize.x, rect.top + self.iconSize.y, self.iconSize.x, self.iconSize.y))
             
             # Move icon.
-            iconRect = Rect(rect.right - self.iconSize.x, rect.top, self.iconSize.x, self.iconSize.y)
+            iconRect = Rect(rect.right - self.iconSize.x/2, rect.top, self.iconSize.x, self.iconSize.y)
             g.screen.blit(self.moveIcon, iconRect)
             g.fonts[self.fontType].color = self.movementColor
-            g.screen.blit(g.fonts[self.fontType].getCached(self.movement), Rect(rect.right, rect.top, self.iconSize.x, self.iconSize.y))
+            g.screen.blit(g.fonts[self.fontType].dropShadow(self.movement, cached=True), Rect(rect.right - self.iconSize.x, rect.top, self.iconSize.x, self.iconSize.y))
             
             # Mana icon.
             iconRect = Rect(rect.left, rect.top, self.iconSize.x, self.iconSize.y)
             g.screen.blit(self.manaIcon, iconRect)
-            g.fonts[self.fontType].color = self.manaColor
-            g.screen.blit(g.fonts[self.fontType].getCached(self.manaCost), Rect(rect.left, rect.top, self.iconSize.x, self.iconSize.y))
+            g.fonts[self.fontType].color = (255,255,255)#doesn't work? self.manaColor
+            g.screen.blit(g.fonts[self.fontType].dropShadow(self.manaCost, cached=True), util.centerRect(Rect(rect.left, rect.top, self.iconSize.x, self.iconSize.y),iconRect))
             
         else:
             g.screen.blit(g.image_manager.card_back, rect)
