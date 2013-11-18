@@ -55,6 +55,12 @@ class GameController (Controller):
             # Now the player who's turn it is draws a card
             self.players[self.playersTurn].drawCard()
 
+            #AI Takes Over
+            if self.playersTurn == 0:
+                playLane = self.getSuggestedPlay()
+                self.board.lanes[playLane].placeCard(self.players[self.playersTurn].hand.cards[0], 0)
+                g.event_manager.post(events.ButtonEndTurn(1))
+
         if isinstance(event, events.MouseDown):
             print "mousedown"
             if event.mouseButton == 2:
